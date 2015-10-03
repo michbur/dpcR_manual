@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>adpcr-class. dpcR 0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Michal Burdukiewicz.
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">dpcR 0.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Class <code>"adpcr"</code> - end-point array digital PCR experiments</h1>
+
+<div class="row">
+  <div class="span8">
+        
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>A class specifically designed to contain results from end-point array
+digital PCR experiments. Data is represented as matrix, where each column
+describes different experiment. Type of data in all columns is specified in
+slot <code>"type"</code>. Inherits from <code>dpcr</code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>For more in-depth explanation of digital PCR data structure, see
+<code>dpcr</code>.</p>
+  
+    </div>
+
+    <div class="Slots">
+      <h2>Slots</h2>
+
+      <p></p>
+  
+      <p><dl>
+<dt><code>breaks</code></dt><dd><code>"numeric"</code> vector giving the number of intervals into which
+<code>.Data</code> should be cut. The second element in <code>breaks</code> vector is considered
+a threshold. Partition above or equal to threshold is counted as
+positive.</dd></p>
+  
+      <p><dt><code>col_names</code></dt><dd><code>"character"</code> vector naming the columns in the array.</dd></p>
+  
+      <p><dt><code>row_names</code></dt><dd><code>"character"</code> vector naming the rows in the array.</dd></p>
+  
+      <p><dt><code>panel_id</code></dt><dd><code>"factor"</code> naming the panel to which experiment belong.</dd></p>
+  
+      <p></dl></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>rand_array &lt;- sim_adpcr(400, 1600, 100, pos_sums = FALSE, n_panels = 5)
+one_rand_array &lt;- extract_dpcr(rand_array, 1)
+plot_panel(one_rand_array, 40, 40)
+</div>
+<p><img src='adpcr-class-2.png' alt='' width='540' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>adpcr</li><li>adpcr-class</li>
+    </ul>
+    <ul>
+      <li>classes</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+Data management: <code><a href='adpcr2panel.html'>adpcr2panel</a></code>, <code><a href='bind_dpcr-methods.html'>bind_dpcr</a></code>,
+<code><a href='extract_dpcr.html'>extract_dpcr</a></code>.
+
+Plotting: <code><a href='plot_panel.html'>plot_panel</a></code>.
+
+Tests: <code><a href='test_panel.html'>test_panel</a></code>.
+
+Simulation: <code><a href='sim_adpcr.html'>sim_adpcr</a></code>.
+
+Real-time array digital PCR: <code>rtadpcr</code>.
+
+Droplet digital PCR: <code>ddpcr</code>.
+
+    
+    <h2>Author</h2>
+    
+Michal Burdukiewicz.
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

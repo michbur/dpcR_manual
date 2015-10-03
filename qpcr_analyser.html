@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>qpcr_analyser. dpcR 0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Stefan Roediger, Andrej-Nikolai Spiess, Michal Burdukiewicz.
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">dpcR 0.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>qPCR Analyser</h1>
+
+<div class="row">
+  <div class="span8">
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>input</dt>
+      <dd>a dataframe containing the qPCR data or a result of function
+<code><a href='http://www.inside-r.org/packages/cran/qpcR/docs/modlist'>modlist</a></code> or an object of the class
+<code>adpcr</code>.</dd>
+      <dt>cyc</dt>
+      <dd>the column containing the cycle data. Defaults to first column.</dd>
+      <dt>fluo</dt>
+      <dd>the column(s) (runs) to be analyzed. If NULL, all runs will be
+considered.  Use fluo = 2 to chose the second column for example.</dd>
+      <dt>model</dt>
+      <dd>is the model to be used for the analysis for all runs. Defaults
+to 'l5' (see <code><a href='http://www.inside-r.org/packages/cran/qpcR/docs/pcrfit'>pcrfit</a></code>).</dd>
+      <dt>norm</dt>
+      <dd>logical. Indicates if the raw data should be normalized within
+[0, 1] before model fitting.</dd>
+      <dt>iter_tr</dt>
+      <dd><code>iter_tr</code> number of iteration to fit the curve.</dd>
+      <dt>type</dt>
+      <dd>is the method for the crossing point/threshold cycle estimation
+and efficiency estimation (<a href='http://www.inside-r.org/packages/cran/qpcR/docs/efficiency'>efficiency</a>). Defaults to 'Cy0'
+(<code><a href='http://www.inside-r.org/packages/cran/qpcR/docs/Cy0'>Cy0</a></code>).</dd>
+      <dt>takeoff</dt>
+      <dd>logical; if <code>TRUE</code> calculates the first significant
+cycle of the exponential region (takeoff point). See
+<code><a href='http://www.inside-r.org/packages/cran/qpcR/docs/takeoff'>takeoff</a></code> for details.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+A matrix where each column represents crossing point, efficiency,
+the raw fluorescence value at the point defined by type and difference
+between minimum and maximum of observed fluorescence. If takeoff parameter
+is <code>TRUE</code>, additional two column represents start and the end of the
+fluorescence growth.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Calculate statistics based on fluorescence. The function can be used to
+analyze amplification curve data from quantitative real-time PCR
+experiments. The analysis includes the fitting of the amplification curve by
+a non-linear function and the calculation of a quantification point (often
+referred to as Cp (crossing-point), Cq or Ct) based on a user defined
+method. The function can be used to analyze data from chamber based dPCR
+machines.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>The <code>qpcRanalyzer</code> is a functions to automatize the analysis of
+amplification curves from conventional quantitative real-time PCR (qPCR)
+experiments and is adapted for the needs in dPCR.  This function calls
+instances of the <code>qpcR</code> package to calculate the quantification
+points (cpD1, cpD2, Cy0 (default), TOP (optional)), the amplification
+efficiency, fluorescence at the quantification point (Cq), the absolute
+change of fluorescence and the take-off point (TOP). Most of the central
+functionality of the <code>qpcR</code> package is accessible. The user can assign
+concentrations to the samples. One column contains binary converted (pos (1)
+and neg (0)) results for the amplification reaction based on a user defined
+criteria (Cq-range, fluorescence cut-off, ...). <code>qpcr_analyser</code> tries
+to detect cases where an amplification did not take place of was impossible
+to analyze. By default <code>qpcr_analyser</code> analyses uses the Cy0 as
+described in Guescini et al. (2008) for estimation of the quantification
+point since method is considered to be better suited for many probe systems.
+By default a 5-parameter model is used to fit the amplification curves. As
+such <code>qpcr_analyser</code> is a function, which serves for preliminary data
+inspection (see Example section) and as input for other R functions from the
+<code>dpcR</code> package (e.g., <a href='plot_panel.html'>plot_panel</a>).</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>Ritz C, Spiess An-N, <em>qpcR: an R package for sigmoidal
+model selection in quantitative real-time polymerase chain reaction
+analysis</em>.  Bioinformatics 24 (13), 2008.</p>
+  
+      <p>Andrej-Nikolai Spiess (2013). qpcR: Modelling and analysis of real-time PCR
+data. <a href = 'http://CRAN.R-project.org/package=qpcR'>http://CRAN.R-project.org/package=qpcR</a></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'># Take data of guescini1 data set from the qpcR R package.
+library(qpcR)
+# Use the first column containing the cycles and the second column for sample F1.1.
+data(guescini1)
+qpcr_analyser(guescini1, cyc = 1, fluo = 2)
+</div>
+<div class='output'>Calculating delta of first/second derivative maxima...
+.
+</div>
+<div class='output'>       Cy0      eff     fluo   deltaF
+F1.1 12.68 1.929026 5.022708 43.76254
+</div>
+<div class='input'>
+# Use similar setting as before but set takeoff to true for an estimation of
+# the first significant cycle of the exponential region.
+qpcr_analyser(guescini1, cyc = 1, fluo = 2, takeoff = TRUE)
+</div>
+<div class='output'>Calculating delta of first/second derivative maxima...
+.
+</div>
+<div class='output'>       Cy0      eff     fluo top     f.top   deltaF
+F1.1 12.68 1.929026 5.022708   8 0.1828568 43.76254
+</div>
+<div class='input'>
+# Use similar setting as before but use qpcr_analyser in a loop to calculate the results for the
+# first four columns containing the fluorescence in guescini1
+print(qpcr_analyser(guescini1, cyc = 1, fluo = 2:5, takeoff = TRUE))
+</div>
+<div class='output'>Calculating delta of first/second derivative maxima...
+....
+       Cy0      eff     fluo top      f.top   deltaF
+F1.1 12.68 1.929026 5.022708   8 0.18285684 43.76254
+F1.2 12.83 1.879277 5.414738   8 0.15452827 42.20724
+F1.3 12.93 1.838269 5.968651   8 0.16241422 41.06854
+F1.4 12.95 1.948830 5.885561   7 0.09467973 52.00836
+</div>
+<div class='input'>
+# Run qpcr_analyser on the list of models (finer control on fitting model process)
+models &lt;- modlist(guescini1)
+</div>
+<div class='output'>Making model for F1.1 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.2 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.3 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.4 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.5 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.6 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.7 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.8 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.9 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.10 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.11 (l4)
+ =&gt; Fitting passed...
+
+Making model for F1.12 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.1 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.2 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.3 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.4 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.5 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.6 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.7 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.8 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.9 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.10 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.11 (l4)
+ =&gt; Fitting passed...
+
+Making model for F2.12 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.1 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.2 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.3 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.4 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.5 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.6 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.7 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.8 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.9 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.10 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.11 (l4)
+ =&gt; Fitting passed...
+
+Making model for F3.12 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.1 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.2 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.3 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.4 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.5 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.6 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.7 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.8 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.9 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.10 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.11 (l4)
+ =&gt; Fitting passed...
+
+Making model for F4.12 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.1 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.2 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.3 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.4 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.5 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.6 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.7 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.8 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.9 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.10 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.11 (l4)
+ =&gt; Fitting passed...
+
+Making model for F5.12 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.1 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.2 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.3 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.4 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.5 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.6 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.7 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.8 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.9 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.10 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.11 (l4)
+ =&gt; Fitting passed...
+
+Making model for F6.12 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.1 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.2 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.3 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.4 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.5 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.6 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.7 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.8 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.9 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.10 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.11 (l4)
+ =&gt; Fitting passed...
+
+Making model for F7.12 (l4)
+ =&gt; Fitting passed...
+
+Calculating delta of first/second derivative maxima...
+.........10.........20.........30.........40.........50
+.........60.........70.........80....
+</div>
+<div class='input'>qpcr_analyser(models)
+</div>
+<div class='output'>        Cy0      eff     fluo
+ [1,] 12.66 2.112965 4.478695
+ [2,] 12.77 2.198693 4.418089
+ [3,] 12.80 2.300741 4.400115
+ [4,] 12.94 2.112952 5.344423
+ [5,] 12.96 2.109569 5.755927
+ [6,] 12.99 2.110794 5.904377
+ [7,] 12.88 2.081751 5.792844
+ [8,] 12.87 2.099389 5.745986
+ [9,] 12.91 2.161512 5.876515
+[10,] 13.08 2.250592 5.424823
+[11,] 13.07 2.307762 5.267039
+[12,] 13.00 2.424404 5.149526
+[13,] 16.45 2.178926 4.206396
+[14,] 16.35 2.286164 4.246099
+[15,] 16.35 2.290356 4.214736
+[16,] 16.15 2.093085 4.646517
+[17,] 16.24 2.140095 4.547053
+[18,] 16.33 2.249924 4.479686
+[19,] 16.37 2.062129 5.477350
+[20,] 16.45 2.170195 5.795758
+[21,] 16.49 2.156109 5.728290
+[22,] 16.52 2.321147 4.955693
+[23,] 16.42 2.450586 4.928083
+[24,] 16.49 2.466627 4.897048
+[25,] 19.91 2.163482 4.133947
+[26,] 19.85 2.137490 4.185138
+[27,] 19.82 2.162445 4.321231
+[28,] 20.01 2.144933 4.279827
+[29,] 19.91 2.275873 4.358203
+[30,] 20.05 2.282754 4.315129
+[31,] 19.92 2.073173 5.651900
+[32,] 19.92 2.030896 5.614638
+[33,] 19.94 2.032460 5.767243
+[34,] 20.01 2.375042 4.919786
+[35,] 20.05 2.341962 4.966050
+[36,] 20.09 2.372823 5.138833
+[37,] 23.34 2.059505 4.417346
+[38,] 23.30 2.032060 4.567589
+[39,] 23.21 2.005799 4.708573
+[40,] 23.52 2.179429 4.248112
+[41,] 23.44 2.151710 4.290822
+[42,] 23.48 2.164402 4.421104
+[43,] 23.41 1.964591 5.679734
+[44,] 23.34 1.957127 5.527937
+[45,] 23.43 1.957529 5.729855
+[46,] 23.63 2.222597 5.304337
+[47,] 23.64 2.129335 5.461381
+[48,] 23.66 2.124380 5.767744
+[49,] 27.10 2.008488 4.559068
+[50,] 27.09 2.104016 4.730298
+[51,] 27.07 2.190712 4.653488
+[52,] 26.86 2.020177 4.460299
+[53,] 26.81 1.993406 4.553855
+[54,] 26.74 1.983155 4.677085
+[55,] 26.96 1.957342 5.721159
+[56,] 26.97 1.960264 5.900159
+[57,] 27.02 1.985636 6.103127
+[58,] 27.13 2.031494 5.479400
+[59,] 27.14 2.173565 5.499213
+[60,] 27.19 2.286946 5.402577
+[61,] 30.24 2.051101 4.550878
+[62,] 30.41 2.072385 4.484299
+[63,] 30.19 2.155422 4.548432
+[64,] 30.37 1.992255 4.611686
+[65,] 30.80 2.067569 4.772446
+[66,] 30.65 2.161693 4.712714
+[67,] 30.67 1.957774 6.028377
+[68,] 30.66 1.977927 6.083620
+[69,] 30.52 2.011545 6.157961
+[70,] 30.79 2.243998 5.373161
+[71,] 30.63 2.298769 5.324789
+[72,] 30.74 2.353178 5.297722
+[73,] 34.31 2.096152 4.681422
+[74,] 34.05 2.128733 4.606451
+[75,] 34.80 2.232061 4.597834
+[76,] 35.24 2.031856 5.677134
+[77,] 34.37 1.965222 6.170537
+[78,] 35.07 1.973551 6.610734
+[79,] 34.51 1.991240 6.259306
+[80,] 33.81 1.950720 6.468542
+[81,] 34.31 1.965436 6.874830
+[82,] 34.09 2.004853 6.832129
+[83,] 34.11 1.971876 6.493096
+[84,] 33.85 2.011292 6.503348
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>qpcr_analyser</li><li>qpcr_analyser,adpcr-method</li><li>qpcr_analyser,data.frame-method</li><li>qpcr_analyser,modlist-method</li><li>qpcr_analyser-methods</li>
+    </ul>
+    <ul>
+      <li>Cy0</li><li>amplification</li><li>qPCR</li><li>quantification</li><li>real-time</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+<a href='http://www.inside-r.org/packages/cran/qpcR/docs/modlist'>modlist</a>.
+
+    
+    <h2>Author</h2>
+    
+Stefan Roediger, Andrej-Nikolai Spiess, Michal Burdukiewicz.
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>test_counts. dpcR 0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Michal Burdukiewicz, Stefan Roediger, Piotr Sobczyk.
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">dpcR 0.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Test counts</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>test_counts(input, model&nbsp;=&nbsp;"ratio", conf.level&nbsp;=&nbsp;0.95)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>input</dt>
+      <dd>adpcr or dpcr object with with "nm" type.</dd>
+      <dt>model</dt>
+      <dd>may have one of following values: <code>binomial</code>, <code>poisson</code>,
+<code>prop</code>, <code>ratio</code>. See Details.</dd>
+      <dt>conf.level</dt>
+      <dd>confidence level of the intervals and groups.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+an object of class <code>count_test</code>.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>The test for comparing counts from two or more digital PCR experiments.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p><code>test_counts</code> incorporates two different approaches to models: GLM (General Linear
+Model) and multiple pair-wise tests. The GLM fits counts data from different
+digital PCR experiments using quasibinomial or quasipoisson <code><a href='http://www.inside-r.org/r-doc/stats/family'>family</a></code>.
+Comparisons between single experiments utilize Tukey's contrast and multiple t-tests
+(as provided by function <code><a href='http://www.inside-r.org/packages/cran/multcomp/docs/glht'>glht</a></code>).</p>
+  
+      <p>In case of pair-wise tests, (<code><a href='http://www.inside-r.org/packages/cran/rateratio.test/docs/rateratio'>rateratio.test</a></code> or
+<code><a href='http://www.inside-r.org/r-doc/stats/prop.test'>prop.test</a></code>) are used to compare all pairs of experiments. The
+p-values are adjusted using the Benjamini & Hochberg method (<code><a href='http://www.inside-r.org/r-doc/stats/p.adjust'>p.adjust</a></code>).
+Furthermore, confidence intervals are simultaneous.</p>
+  
+    </div>
+
+    <div class="Note">
+      <h2>Note</h2>
+
+      <p>Mean number of template molecules per partitions and its confidence intervals will
+vary depending on input.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>Bretz F, Hothorn T, Westfall P, <em>Multiple comparisons using R</em>.
+Boca Raton, Florida, USA: Chapman & Hall/CRC Press (2010).</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>#be warned, the examples of test_counts are time-consuming
+## Not run: 
+# adpcr1 &lt;- sim_adpcr(m = 10, n = 765, times = 1000, pos_sums = FALSE, n_panels = 3)
+# adpcr2 &lt;- sim_adpcr(m = 60, n = 550, times = 1000, pos_sums = FALSE, n_panels = 3)
+# adpcr2 &lt;- rename_dpcr(adpcr2, exper = &quot;Experiment2&quot;)
+# adpcr3 &lt;- sim_adpcr(m = 10, n = 600, times = 1000, pos_sums = FALSE, n_panels = 3)
+# adpcr3 &lt;- rename_dpcr(adpcr3, exper = &quot;Experiment3&quot;)
+# 
+# #compare experiments using binomial regression
+# two_groups_bin &lt;- test_counts(bind_dpcr(adpcr1, adpcr2), model = &quot;binomial&quot;)
+# summary(two_groups_bin)
+# plot(two_groups_bin)
+# #plot aggregated results
+# plot(two_groups_bin, aggregate = TRUE)
+# #get coefficients
+# coef(two_groups_bin)
+# 
+# #this time use Poisson regression
+# two_groups_pois &lt;- test_counts(bind_dpcr(adpcr1, adpcr2), model = &quot;poisson&quot;)
+# summary(two_groups_pois)
+# plot(two_groups_pois)
+# 
+# #see how test behaves when results aren&#39;t significantly different
+# one_group &lt;- test_counts(bind_dpcr(adpcr1, adpcr3))
+# summary(one_group)
+# plot(one_group)
+# ## End(Not run)
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>test_counts</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+Functions used by <code>test_counts</code>:
+<ul>
+<li> <code><a href='http://www.inside-r.org/r-doc/stats/glm'>glm</a></code>,
+</li>
+<li> <code><a href='http://www.inside-r.org/packages/cran/multcomp/docs/glht'>glht</a></code>,
+</li>
+<li> <code><a href='http://www.inside-r.org/packages/cran/multcomp/docs/cld'>cld</a></code>,
+</li>
+<li> <code><a href='http://www.inside-r.org/r-doc/stats/prop.test'>prop.test</a></code>,
+</li>
+<li> <code><a href='http://www.inside-r.org/packages/cran/rateratio.test/docs/rateratio'>rateratio.test</a></code>
+</li>
+</ul>
+
+
+GUI presenting capabilities of the test: <code><a href='test_counts_gui.html'>test_counts_gui</a></code>.
+
+    
+    <h2>Author</h2>
+    
+Michal Burdukiewicz, Stefan Roediger, Piotr Sobczyk.
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>bioamp. dpcR 0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Stefan Roediger, Michal Burdukiewcz
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">dpcR 0.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>A function to analyze plot the raw data from a BioRad droplet digital PCR
+experiment</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>bioamp(data&nbsp;=&nbsp;data, amp_x&nbsp;=&nbsp;1, amp_y&nbsp;=&nbsp;2, cluster&nbsp;=&nbsp;3, robust&nbsp;=&nbsp;TRUE, plot&nbsp;=&nbsp;TRUE, stat&nbsp;=&nbsp;TRUE, xlab&nbsp;=&nbsp;"Assay 1 Amplitude", ylab&nbsp;=&nbsp;"Assay 2 Amplitude", ...)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>data</dt>
+      <dd>object of class <code>what</code> containing the amplitude data.</dd>
+      <dt>amp_x</dt>
+      <dd>is the first amplitude channel (x-axis).</dd>
+      <dt>amp_y</dt>
+      <dd>is the second amplitude channel (y-axis).</dd>
+      <dt>cluster</dt>
+      <dd>are the clusters of the plot. The number indicates the column of a table, which contains the cluster information.</dd>
+      <dt>robust</dt>
+      <dd>Is the method used to calculate the location (mean or median)
+and dispersion (standard deviation or median absolute deviation).</dd>
+      <dt>plot</dt>
+      <dd>logical, if <code>TRUE</code>, the plot is printed.</dd>
+      <dt>stat</dt>
+      <dd>logical, if <code>TRUE</code>, the statistics of the droplet digital
+PCR experiment are calculated.</dd>
+      <dt>xlab</dt>
+      <dd>x-label of the plot.</dd>
+      <dt>ylab</dt>
+      <dd>y-label of the plot.</dd>
+      <dt>...</dt>
+      <dd>other arguments passed to the <code>plot</code> function (see
+<code>plot.default</code> for details).</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>bioamp</code> is a function to plot and analyze the amplitude data of a
+BioRad droplet digital PCR experiment.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>par(mfrow = c(1,2))
+bioamp(data = pds_raw[[&quot;A01&quot;]], main = &quot;Well A01&quot;, pch = 19)
+</div>
+<div class='output'>                   Cluster.4  Cluster.1 Cluster.3  Cluster.2
+Counts Ch. 1     11552.00000   11.00000  398.0000    3.00000
+Counts Ch. 2     11552.00000   11.00000  398.0000    3.00000
+Location Ch. 1     590.94425  553.69556  995.2142 2026.70093
+Location Ch. 2    3676.18494 1084.54590 3694.3724  995.84230
+Dispersion Ch. 1    51.25585   24.43643  182.0612   80.47304
+Dispersion Ch. 2   115.59810   84.69588  136.8308   32.88620
+</div>
+<div class='input'>bioamp(data = pds_raw[[&quot;A02&quot;]], main = &quot;Well A02&quot;, pch = 19)
+</div>
+<p><img src='bioamp-4.png' alt='' width='540' height='400' /></p>
+<div class='output'>                  Cluster.1  Cluster.4  Cluster.2 Cluster.3
+Counts Ch. 1     9781.00000  587.00000  792.00000   38.0000
+Counts Ch. 2     9781.00000  587.00000  792.00000   38.0000
+Location Ch. 1    579.75195  586.43384 2016.80012 1427.3433
+Location Ch. 2   1015.20868 3465.11963  999.26620 3468.6197
+Dispersion Ch. 1   40.21337   46.17048  177.15604  352.1041
+Dispersion Ch. 2   50.94112  159.30630   58.83233  183.7515
+</div>
+<div class='input'>par(mfrow = c(1,1))
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>bioamp</li>
+    </ul>
+    <ul>
+      <li>Amplitude</li><li>BioRad</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    
+Stefan Roediger, Michal Burdukiewcz
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

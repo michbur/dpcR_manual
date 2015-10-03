@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>moments-methods. dpcR 0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Michal Burdukiewicz.
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">dpcR 0.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Calculate Moments of Poisson Distribution</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>moments(input)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>input</dt>
+      <dd>a vector with two elements (the first element is treated as
+a number of positive partitions and the second as a number of total partitions)
+or a matrix with two columns (first columns contains numbers of
+positive partitions and the second total numbers of total partitions)
+or an object of class <code>dpcr</code> .</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+A data frame with four columns: name of the experiment,
+name of the replicate, method of computation (theoretical or empirical),
+name of the moment and the value of the moment. The theoretical moments are
+computed using the lambda value and the empirical using the sample values.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Computes moments of a Poisson distribution. The calculations are based on
+values of positive and total partitions or the theoretical lambda value.</p>
+  
+    </div>
+
+    <div class="Note">
+      <h2>Note</h2>
+
+      <p>Four first moments of a Poisson distribution.</p>
+  
+      <p>Mean : $lambda$.</p>
+  
+      <p>Variance: $lambda$.</p>
+  
+      <p>Skewness: $lambda^(-0.5)$.</p>
+  
+      <p>Kurtosis: $lambda^(-1)$.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'># moments for 100 positive partitions of 765 total partitions
+moments(c(100, 765))
+</div>
+<div class='output'>  experiment replicate      method   moment     value
+1    Unknown   Unknown theoretical     mean 0.1400888
+2    Unknown   Unknown theoretical variance 0.1400888
+3    Unknown   Unknown theoretical skewness 2.6717653
+4    Unknown   Unknown theoretical kurtosis 7.1383298
+5    Unknown   Unknown   empirical     mean 0.1307190
+6    Unknown   Unknown   empirical variance 0.1137802
+7    Unknown   Unknown   empirical skewness 2.1866814
+8    Unknown   Unknown   empirical kurtosis 2.7852215
+</div>
+<div class='input'>
+# calculate moments for an array digital PCR
+moments(six_panels)
+</div>
+<div class='output'>    experiment replicate      method   moment       value
+1  Experiment1         1 theoretical     mean  0.01448347
+2  Experiment1         1 theoretical variance  0.01448347
+3  Experiment1         1 theoretical skewness  8.30928683
+4  Experiment1         1 theoretical kurtosis 69.04424759
+5  Experiment1         1   empirical     mean  0.01437908
+6  Experiment1         1   empirical variance  0.01419088
+7  Experiment1         1   empirical skewness  8.14244218
+8  Experiment1         1   empirical kurtosis 64.38353128
+9  Experiment1         2 theoretical     mean  0.01183446
+10 Experiment1         2 theoretical variance  0.01183446
+11 Experiment1         2 theoretical skewness  9.19233451
+12 Experiment1         2 theoretical kurtosis 84.49901380
+13 Experiment1         2   empirical     mean  0.01176471
+14 Experiment1         2   empirical variance  0.01164152
+15 Experiment1         2   empirical skewness  9.03829130
+16 Experiment1         2   empirical kurtosis 79.79502202
+17 Experiment2         1 theoretical     mean  0.05232582
+18 Experiment2         1 theoretical variance  0.05232582
+19 Experiment2         1 theoretical skewness  4.37161576
+20 Experiment2         1 theoretical kurtosis 19.11102433
+21 Experiment2         1   empirical     mean  0.05098039
+22 Experiment2         1   empirical variance  0.04844472
+23 Experiment2         1   empirical skewness  4.07477852
+24 Experiment2         1   empirical kurtosis 14.62294008
+25 Experiment2         2 theoretical     mean  0.05646661
+26 Experiment2         2 theoretical variance  0.05646661
+27 Experiment2         2 theoretical skewness  4.20827523
+28 Experiment2         2 theoretical kurtosis 17.70958041
+29 Experiment2         2   empirical     mean  0.05490196
+30 Experiment2         2   empirical variance  0.05195565
+31 Experiment2         2   empirical skewness  3.90032865
+32 Experiment2         2   empirical kurtosis 13.22986264
+33 Experiment3         1 theoretical     mean  0.12813050
+34 Experiment3         1 theoretical variance  0.12813050
+35 Experiment3         1 theoretical skewness  2.79366118
+36 Experiment3         1 theoretical kurtosis  7.80454277
+37 Experiment3         1   empirical     mean  0.12026144
+38 Experiment3         1   empirical variance  0.10593710
+39 Experiment3         1   empirical skewness  2.33035761
+40 Experiment3         1   empirical kurtosis  3.43506199
+41 Experiment3         2 theoretical     mean  0.11778304
+42 Experiment3         2 theoretical variance  0.11778304
+43 Experiment3         2 theoretical skewness  2.91379255
+44 Experiment3         2 theoretical kurtosis  8.49018702
+45 Experiment3         2   empirical     mean  0.11111111
+46 Experiment3         2   empirical variance  0.09889471
+47 Experiment3         2   empirical skewness  2.47002263
+48 Experiment3         2   empirical kurtosis  4.10638472
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>moments</li><li>moments,dpcr-method</li><li>moments,matrix-method</li><li>moments,numeric-method</li><li>moments-methods</li>
+    </ul>
+    <ul>
+      <li>kurtosis</li><li>mean</li><li>moments</li><li>skewness</li><li>variance</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    
+Michal Burdukiewicz.
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

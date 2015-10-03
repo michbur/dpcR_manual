@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>test_panel. dpcR 0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Adrian Baddeley, Rolf Turner, Michal Burdukiewcz, Stefan Roediger.
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">dpcR 0.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Dispersion Test for Spatial Point Pattern in Array dPCR Based on Quadrat
+Counts</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>test_panel(X, nx&nbsp;=&nbsp;5, ny&nbsp;=&nbsp;5, alternative&nbsp;=&nbsp;c("two.sided", "regular", "clustered"), method&nbsp;=&nbsp;c("Chisq", "MonteCarlo"), conditional&nbsp;=&nbsp;TRUE, nsim&nbsp;=&nbsp;1999)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>X</dt>
+      <dd>Object of the <code>adpcr</code> class containing data from
+one or more panels.</dd>
+      <dt>nx</dt>
+      <dd>Number of quadrats in the x direction.</dd>
+      <dt>ny</dt>
+      <dd>Number of quadrats in the y direction.</dd>
+      <dt>alternative</dt>
+      <dd><code>character</code> string (partially matched) specifying the
+alternative hypothesis.</dd>
+      <dt>method</dt>
+      <dd><code>character</code> string (partially matched) specifying the test to
+use: either <code>"Chisq"</code> for the chi-squared test (the default), or
+<code>"MonteCarlo"</code> for a Monte Carlo test.</dd>
+      <dt>conditional</dt>
+      <dd><code>logical</code>. Should the Monte Carlo test be conducted
+conditionally upon the observed number of points of the pattern? Ignored if
+method="Chisq".</dd>
+      <dt>nsim</dt>
+      <dd>The number of simulated samples to generate when
+method="MonteCarlo".</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+A <code>list</code> of objects of class <code>"htest"</code> with the length equal to the
+number of plates (minimum 1).
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Performs a test of Complete Spatial Randomness for each
+plate. This function is a wrapper around <code><a href='http://www.inside-r.org/packages/cran/spatstat/docs/quadrat.test'>quadrat.test</a></code>
+function working directly on the objects of <code>adpcr</code>.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>Under optimal conditions, the point pattern of dPCR events (e.g., positive droplet
+& negative droplets) should be randomly distrubuted over a planar chip.
+This function verifies this assumption using chi-square or Monte Carlo test.
+Arrays with non-random patterns should be checked for integrity.</p>
+  
+    </div>
+
+    <div class="Note">
+      <h2>Note</h2>
+
+      <p>A similar result can be achived by using <code><a href='adpcr2ppp.html'>adpcr2ppp</a></code> and
+<code><a href='http://www.inside-r.org/packages/cran/spatstat/docs/quadrat.test'>quadrat.test</a></code>. See Examples.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>http://www.spatstat.org/</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>many_panels &lt;- sim_adpcr(m = 400, n = 765, times = 1000, pos_sums = FALSE,
+                   n_panels = 5)
+test_panel(many_panels)
+</div>
+<div class='output'>$Experiment1.1
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 31.582, df = 24, p-value = 0.2754
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+$Experiment1.2
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 36.373, df = 24, p-value = 0.1009
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+$Experiment1.3
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 17.71, df = 24, p-value = 0.3663
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+$Experiment1.4
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 11.042, df = 24, p-value = 0.02257
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+$Experiment1.5
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 23.315, df = 24, p-value = 0.9974
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+</div>
+<div class='input'>
+#test only one plate
+test_panel(extract_dpcr(many_panels, 3))
+</div>
+<div class='output'>$Experiment1.3
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 17.71, df = 24, p-value = 0.3663
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+</div>
+<div class='input'>
+#do test_panel manually
+require(spatstat)
+</div>
+<strong class='message'>Loading required package: spatstat</strong>
+<strong class='message'>
+spatstat 1.42-2       (nickname: ‘Barking at Balloons’) 
+For an introduction to spatstat, type ‘beginner’</strong>
+<strong class='message'>
+Attaching package: ‘spatstat’
+</strong>
+<strong class='message'>The following object is masked from ‘package:MASS’:
+
+    area
+</strong>
+<div class='input'>ppp_data &lt;- adpcr2ppp(many_panels)
+lapply(ppp_data, function(single_panel) quadrat.test(single_panel))
+</div>
+<div class='output'>$Experiment1.1
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 31.582, df = 24, p-value = 0.2754
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+$Experiment1.2
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 36.373, df = 24, p-value = 0.1009
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+$Experiment1.3
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 17.71, df = 24, p-value = 0.3663
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+$Experiment1.4
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 11.042, df = 24, p-value = 0.02257
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+$Experiment1.5
+
+	Chi-squared test of CSR using quadrat counts
+	Pearson X2 statistic
+
+data:  single_panel
+X2 = 23.315, df = 24, p-value = 0.9974
+alternative hypothesis: two.sided
+
+Quadrats: 5 by 5 grid of tiles
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>test_panel</li>
+    </ul>
+    <ul>
+      <li>dPCR</li><li>pattern</li><li>quadrat</li><li>spatial</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+<code><a href='http://www.inside-r.org/packages/cran/spatstat/docs/quadrat.test'>quadrat.test</a></code>.
+
+    
+    <h2>Author</h2>
+    
+Adrian Baddeley, Rolf Turner, Michal Burdukiewcz, Stefan Roediger.
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

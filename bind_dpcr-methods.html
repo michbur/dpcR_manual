@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>bind_dpcr-methods. dpcR 0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Michal Burdukiewicz
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">dpcR 0.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Bind dpcr objects</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>bind_dpcr(input, ...)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>input</dt>
+      <dd>an object of class <code>adpcr</code> or
+<code>ddpcr</code> or a list.</dd>
+      <dt>...</dt>
+      <dd>objects of class <code>adpcr</code> or
+<code>ddpcr</code>. See Details. If <code>input</code> is a list, ignored.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+An object of class <code>adpcr</code> or
+<code>ddpcr</code>, depending on the input.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>A convinient wrapper around <code><a href='http://www.inside-r.org/r-doc/base/cbind'>cbind</a></code> and
+<code><a href='http://www.inside-r.org/r-doc/base/cbind'>rbind</a></code> tailored specially for binding multiple objects
+containing results from digital PCR experiments.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>In case of <code>adpcr</code> or <code>ddpcr</code> objects, <code>bind_dpcr</code> works
+analogously to <code><a href='http://www.inside-r.org/r-doc/base/cbind'>cbind</a></code>, but without recycling. In case on
+unequal length, shorter objects will be filled in with additional <code>NA</code>
+values. The original length is always preserved in <code>n</code> slot.</p>
+  
+      <p><code>bind_dpcr</code> automatically names binded experiments using format
+<code>x</code>.<code>y</code>, where <code>x</code> is number of object passed to function and
+<code>y</code> is a number of experiment in a given object.</p>
+  
+    </div>
+
+    <div class="Note">
+      <h2>Note</h2>
+
+      <p>Because <code>bind_dpcr</code> calls <code><a href='http://www.inside-r.org/r-doc/base/do.call'>do.call</a></code> function,
+binding together at the same time more than 500 objects can lead to
+'stack overflow' error.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>bigger_array &lt;- sim_adpcr(400, 765, 1000, pos_sums = FALSE, n_panels = 5)
+smaller_array &lt;- sim_adpcr(100, 700, 1000, pos_sums = FALSE, n_panels = 3)
+bound_arrays &lt;- bind_dpcr(bigger_array, smaller_array)
+</div>
+<strong class='message'>Different number of partitions. Shorter objects completed with NA values.</strong>
+<div class='input'>
+smaller_droplet &lt;- sim_ddpcr(m = 7, n = 20, times = 5, n_exp = 2)
+bigger_droplet &lt;- sim_ddpcr(m = 15, n = 25, times = 5, n_exp = 4)
+biggest_droplet &lt;- sim_ddpcr(m = 15, n = 35, times = 5, n_exp = 1)
+bound_droplets &lt;- bind_dpcr(smaller_droplet, bigger_droplet, biggest_droplet)
+</div>
+<strong class='message'>Different number of partitions. Shorter objects completed with NA values.</strong></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>bind_dpcr</li><li>bind_dpcr,adpcr</li><li>bind_dpcr,adpcr-method</li><li>bind_dpcr,ddpcr</li><li>bind_dpcr,ddpcr-method</li><li>bind_dpcr,list</li><li>bind_dpcr,list-method</li><li>bind_dpcr-methods</li>
+    </ul>
+    <ul>
+      <li>manip</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+Opposite function: <code><a href='extract_dpcr.html'>extract_dpcr</a></code>
+
+    
+    <h2>Author</h2>
+    
+Michal Burdukiewicz
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

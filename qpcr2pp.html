@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>qpcr2pp. dpcR 0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Stefan Roediger, Michal Burdukiewicz.
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">dpcR 0.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>qPCR to Poisson Process</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>qpcr2pp(data, cyc&nbsp;=&nbsp;1, fluo&nbsp;=&nbsp;NULL, Cq_range&nbsp;=&nbsp;c(min(data[cyc]) + 6, max(data[cyc]) - 6), model&nbsp;=&nbsp;l5, SDM&nbsp;=&nbsp;TRUE, NuEvents&nbsp;=&nbsp;1, delta&nbsp;=&nbsp;1, exper&nbsp;=&nbsp;"qPCR1", replicate&nbsp;=&nbsp;1, assay&nbsp;=&nbsp;"Unknown", type&nbsp;=&nbsp;"np")</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>data</dt>
+      <dd>a dataframe containing the qPCR data.</dd>
+      <dt>cyc</dt>
+      <dd>the column containing the cycle data. Defaults to first column.</dd>
+      <dt>fluo</dt>
+      <dd>the column(s) (runs) to be analyzed. If <code>NULL</code>, all runs will be
+considered (equivalent of <code>(1L:ncol(data))[-cyc]</code>).</dd>
+      <dt>Cq_range</dt>
+      <dd>is a user defined range of cycles to be used for the
+determination of the Cq values.</dd>
+      <dt>model</dt>
+      <dd>is the model to be used for the analysis for all runs. Defaults
+to 'l5' (see <code><a href='http://www.inside-r.org/packages/cran/qpcR/docs/pcrfit'>pcrfit</a></code>).</dd>
+      <dt>SDM</dt>
+      <dd>if <code>TRUE</code>, Cq is approximated by the second derivative
+method.  If <code>FALSE</code>, Cy0 method is used instead.</dd>
+      <dt>NuEvents</dt>
+      <dd>"number of expected events" within a time frame
+(interval).</dd>
+      <dt>delta</dt>
+      <dd>difference "time (cycles) points" e.g., Cycle 18 and 25.</dd>
+      <dt>exper</dt>
+      <dd>The id of experiments.</dd>
+      <dt>replicate</dt>
+      <dd>The id of technical replicates.</dd>
+      <dt>assay</dt>
+      <dd>The name or id of assays.</dd>
+      <dt>type</dt>
+      <dd>object of class <code>"character"</code> defining type of data. Could
+be <code>"np"</code> (status (positive (1) or negative(0)) of each droplet) or<code>"ct"</code>
+(threshold cycle).</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+An object of <code>qdpcr</code> class.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Describes qPCR as Poisson process.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>Selected platforms (e.g., Open Array) are real-time platforms. dPCR can be
+described by Poisson statistics. The function <code>qpcr2pp</code> takes a step
+further and interprets the dPCR as a Poisson process if it is analyzed as a
+"time" based process.</p>
+  
+      <p>The dPCR Technology breaks fundamentally with the previous concept of
+nucleic acid quantification. dPCR can be seen as a next generation nucleic
+acid quantification method based on PCR. The key difference between dPCR and
+traditional PCR lies in the method of measuring (absolute) nucleic acids
+amounts. This is possible after ``clonal DNA amplification'' in thousands of
+small separated partitions (e.g., droplets, nano chambers).  Partitions with
+no nucleic acid remain negative and the others turn positive. Selected
+technologies (e.g., OpenArray(R) Real-Time PCR System) monitor amplification
+reactions in the chambers in real-time. Cq values are calculated from the
+amplification curves and converted into discrete events by means of positive
+and negative partitions and the absolute quantification of nucleic acids is
+done by Poisson statistics.</p>
+  
+      <p>PCR data derived from a qPCR experiment can be seen as a series of events
+over time. We define t_i as the time between the first (i - 1)^st and the
+i^th event. Therefore, the time $S_n$ is the sum of all
+$t_i$ from $i = 1$ to $i = n$. This is the
+time to the n^th event. $S(t)$ is the number of events in $[0, t]$. This can be seen as a Poisson process. The Poisson statistics
+is the central theorem to random processes in digital PCR.</p>
+  
+      <p>The function <code>qpcr2pp</code> is used to model random point events in time
+units (PCR cycles), such as the increase of signal during a qPCR reaction in
+a single compartment. A Poisson process can be used to model times at which
+an event occurs in a "system". The <code>qpcr2pp</code> (quantitative Real-Time
+PCR to Poisson process) function transforms the qPCR amplification curve
+data to quantification points (Cq), which are visualized as Poisson process.
+This functions helps to spot differences between replicate runs of digital
+PCR experiments. In ideal scenarios the <code>qpcr2pp</code> plots are highly
+similar.</p>
+  
+      <p>This tool might help to spot differences between experiments (e.g.,
+inhibition of amplification reactions, influence of the chip arrays). The
+qPCR is unique because the amplification of conventional qPCRs takes place
+in discrete steps (cycles: 1, 2 ... 45), but the specific Cq values are
+calculated with continuous outcomes (Cq: 18.2, 25.7, ...). Other
+amplification methods such as isothermal amplifications are time based and
+thus better suited for Poisson process.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>library(qpcR)
+test &lt;- cbind(reps[1L:45, ], reps2[1L:45, 2L:ncol(reps2)],
+	      reps3[1L:45, 2L:ncol(reps3)])
+
+# before interpolation qPCR experiment must be converted into dPCR
+qpcrpp &lt;- qpcr2pp(data = test, cyc = 1, fluo = NULL, Cq_range = c(20, 30),
+                  model = l5, delta = 5)
+summary(qpcrpp)
+</div>
+<div class='output'>
+Number of positive partitions: 48 
+Total number of partitions:    79 
+
+Number of runs:        1 
+Number of experiments: 1 
+
+ experiment replicate   assay method    lambda lambda.low lambda.up        m    m.low     m.up  k  n
+      qPCR1         1 Unknown   dube 0.9354606  0.6929900  1.256209 73.90139 54.74621 99.24047 48 79
+      qPCR1         1 Unknown   bhat 0.9354606  0.7954612  1.075460 73.90139 62.84144 84.96135 48 79
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>qpcr2pp</li>
+    </ul>
+    <ul>
+      <li>Poisson</li><li>Process</li><li>qPCR</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    
+Stefan Roediger, Michal Burdukiewicz.
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

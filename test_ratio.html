@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>test_ratio. dpcR 0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Michael Fay, Michal Burdukiewicz, Stefan Roediger
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">dpcR 0.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Rate ratio test</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>test_ratio(dpcr1, dpcr2, alternative&nbsp;=&nbsp;c("two.sided", "less", "greater"), conf.level&nbsp;=&nbsp;0.95)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>dpcr1</dt>
+      <dd>a (non-empty) numeric vector of data values of length 2 or more
+or an object of class <code>adpcr</code> or
+<code>ddpcr</code>. See Details.</dd>
+      <dt>dpcr2</dt>
+      <dd>a (non-empty) numeric vector of data values of length 2 or more
+or an object of class <code>adpcr</code> or
+<code>ddpcr</code>. See Details.</dd>
+      <dt>alternative</dt>
+      <dd>alternative hypothesis, must be one of: <code>two.sided</code>,
+<code>greater</code> or <code>less</code>.</dd>
+      <dt>conf.level</dt>
+      <dd>confidence level for the returned confidence interval.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+An object of class `htest' containing the following components:
+<dt>p.value</dt><dd>the p-value of the test</dd>
+ <dt>estimate</dt><dd>a vector with the
+means (lambdas) of both experiments and their ratio</dd></p>
+  
+      <p><dt>conf.int</dt><dd>confidence interval for ratio between two experiments.</dd></p>
+  
+      <p><dt>alternative</dt><dd>type of alternative hypothesis</dd>
+ <dt>method</dt><dd>description
+of method</dd>
+ <dt>data.name</dt><dd>description of data</dd></p>
+  
+      <p></dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>The test for comparing ratio of two Poisson means: $r = \lambda_1/\lambda_2$.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>Objects <code>dpcr1</code> and <code>dpcr2</code> can be: <ol>
+<li> numeric
+vectors of length 2. The first element is assumed to be number of positive
+partitions and the second one to be the total number of partitions.  </li>
+<li>
+numeric vectors of length greater than 2. The length of vector is assumed to
+represent total number of partitions. Every element of the vector with value
+bigger than 0 is assumed to be a positive partitions.  </li>
+<li>
+<code>adpcr</code> objects with type <code>tnp</code> (total number of
+positive wells in panel) or <code>nm</code> (number of molecules per partition).
+<code>ddpcr</code> objects with type <code>tnp</code> (total number of
+positive droplets) or <code>nm</code> (number of molecules per droplet).  </li>
+</ol>
+ Both
+<code>dpcr1</code> and <code>dpcr2</code> must have the same class. See Examples.</p>
+  
+      <p>The <code>ratio_test</code> is a wrapper around
+<a href='http://www.inside-r.org/packages/cran/rateratio.test/docs/rateratio'>rateratio.test</a> function with custom input and output
+tailored specifically for digital PCR experiments.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>Fay M.P. <em>Two-sided exact tests and matching confidence
+intervals for discrete data</em> R Journal 2 (1), 2010.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'># Input values are numeric vectors representing dPCR experiments
+x1 &lt;- rpois(765, 1.1)
+x2 &lt;- rpois(765, 1.1)
+test_ratio(x1, x2)
+</div>
+<div class='output'>
+	Exact Rate Ratio Test, assuming Poisson counts
+
+data:  dPCR 1: positive partitions: 509; total partitions: 765.
+       dPCR 2: positive partitions: 487; total partitions: 765.
+p-value = 0.5058
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.9212452 1.1858815
+sample estimates:
+        Lambda1         Lambda2 Lambda1/Lambda2 
+       1.094698        1.012255        1.045175 
+
+</div>
+<div class='input'>
+# Input values represent only number of positive partitions and total
+# partitions
+x3 &lt;- sum(rpois(765, 1.1) &gt; 0)
+x4 &lt;- sum(rpois(765, 1.1) &gt; 0)
+test_ratio(c(x3, 765), c(x4, 765))
+</div>
+<div class='output'>
+	Exact Rate Ratio Test, assuming Poisson counts
+
+data:  dPCR 1: positive partitions: 513; total partitions: 765.
+       dPCR 2: positive partitions: 504; total partitions: 765.
+p-value = 0.8019
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.898361 1.153289
+sample estimates:
+        Lambda1         Lambda2 Lambda1/Lambda2 
+       1.110447        1.075355        1.017857 
+
+</div>
+<div class='input'>
+# It is possible to mix different types of input as long as they have
+# the same class
+test_ratio(c(x3, 765), x1)
+</div>
+<div class='output'>
+	Exact Rate Ratio Test, assuming Poisson counts
+
+data:  dPCR 1: positive partitions: 513; total partitions: 765.
+       dPCR 2: positive partitions: 509; total partitions: 765.
+p-value = 0.9252
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.8898075 1.1415891
+sample estimates:
+        Lambda1         Lambda2 Lambda1/Lambda2 
+       1.110447        1.094698        1.007859 
+
+</div>
+<div class='input'>
+# The same is true for adpcr and dpcr objects.
+x5 &lt;- sim_adpcr(400, 1600, 100, pos_sums = TRUE, n_panels = 1)
+x6 &lt;- sim_adpcr(400, 1600, 100, pos_sums = FALSE, n_panels = 1)
+test_ratio(x5, x6)
+</div>
+<div class='output'>
+	Exact Rate Ratio Test, assuming Poisson counts
+
+data:  dPCR 1: positive partitions: 337; total partitions: 1600.
+       dPCR 2: positive partitions: 365; total partitions: 1600.
+p-value = 0.3082
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.7938435 1.0735894
+sample estimates:
+        Lambda1         Lambda2 Lambda1/Lambda2 
+      0.2365138       0.2589327       0.9232877 
+
+</div>
+<div class='input'>
+x7 &lt;- sim_ddpcr(400, 1600, 100, pos_sums = TRUE, n_exp = 1)
+x8 &lt;- sim_ddpcr(400, 1600, 100, pos_sums = FALSE, n_exp = 1)
+test_ratio(x7, x8)
+</div>
+<div class='output'>
+	Exact Rate Ratio Test, assuming Poisson counts
+
+data:  dPCR 1: positive partitions: 327; total partitions: 1600.
+       dPCR 2: positive partitions: 347; total partitions: 1600.
+p-value = 0.4643
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.8077512 1.0992100
+sample estimates:
+        Lambda1         Lambda2 Lambda1/Lambda2 
+      0.2286273       0.2444630       0.9423631 
+
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>test_ratio</li><li>test_ratio,adpcr</li><li>test_ratio,adpcr,adpcr-method</li><li>test_ratio,adpcr-method</li><li>test_ratio,ddpcr</li><li>test_ratio,ddpcr,ddpcr-method</li><li>test_ratio,ddpcr-method</li><li>test_ratio,numeric</li><li>test_ratio,numeric,numeric-method</li><li>test_ratio,numeric-method</li>
+    </ul>
+    <ul>
+      <li>compare</li><li>mean</li><li>poisson</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+See also <code><a href='http://www.inside-r.org/r-doc/stats/poisson.test'>poisson.test</a></code>.
+
+    
+    <h2>Author</h2>
+    
+Michael Fay, Michal Burdukiewicz, Stefan Roediger
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

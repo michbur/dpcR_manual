@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>plot.qdpcr. dpcR 0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Stefan Roediger, Michal Burdukiewicz
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">dpcR 0.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Plot <code>qdpcr</code> objects</h1>
+
+<div class="row">
+  <div class="span8">
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>is a <code>qdpcr</code> object.</dd>
+      <dt>mincyc</dt>
+      <dd>is the first cycle to start the plot from.</dd>
+      <dt>maxcyc</dt>
+      <dd>the last cycle for the plot.</dd>
+      <dt>rug</dt>
+      <dd>Adds a rug representation of the data to the plot.</dd>
+      <dt>digits</dt>
+      <dd>how many significant digits are to be used in plot.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>An analytical plot describing relationship between the cycle number and the
+current value of Poisson mean. The plot can be used for quality control of
+process.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>The <code>rug</code> parameter allows user to add density of the number of events
+to the plot.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>library(qpcR)
+test &lt;- cbind(reps[1L:45, ], reps2[1L:45, 2L:ncol(reps2)], reps3[1L:45,
+        2L:ncol(reps3)])
+
+plot(qpcr2pp(data = test, cyc = 1, fluo = NULL, model = l5, delta = 5), rug = TRUE)
+</div>
+<p><img src='plot.qdpcr-2.png' alt='' width='540' height='400' /></p></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>plot,qdpcr,ANY-method</li><li>plot,qdpcr-method</li><li>plot.qdpcr</li>
+    </ul>
+    <ul>
+      <li>hplot</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+<code>qdpcr</code>
+
+    
+    <h2>Author</h2>
+    
+Stefan Roediger, Michal Burdukiewicz
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
