@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Panel — plot_panel • dpcR</title>
+<title>Plot Panel � plot_panel • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -133,10 +133,7 @@ interval of the input, with the brightest colors for the lowest values.</p>
 <code><a href='adpcr2panel.html'>adpcr2panel</a></code> - convert <code><a href='adpcr-class.html'>adpcr</a></code> object to arrays.</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Create a sample dPCR experiment with 765 elements (~&gt; virtual compartments)   </span>
 <span class='co'># of target molecule copies per compartment as integer numbers (0,1,2)</span>
@@ -148,7 +145,7 @@ interval of the input, with the brightest colors for the lowest values.</p>
 <span class='fu'>plot_panel</span>(<span class='no'>ttest</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"blue"</span>, <span class='st'>"red"</span>))</div><img src='plot_panel-4.png' alt='' width='540' height='400' /><div class='input'>
 <span class='co'># plot few panels</span>
 <span class='no'>ttest2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_adpcr.html'>sim_adpcr</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>765</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>pos_sums</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-                    <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output'><strong class='text-info'>The assumed volume of partitions in each run is equal to 1.</strong></div><div class='output'><strong class='text-info'>The assumed volume uncertainty in each run is equal to 0.</strong></div><div class='input'><span class='fu'>par</span>(<span class='kw'>mfcol</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>))
+                    <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='message'>The assumed volume of partitions in each run is equal to 1.</span></div><div class='output co'>#&gt; <span class='message'>The assumed volume uncertainty in each run is equal to 0.</span></div><div class='input'><span class='fu'>par</span>(<span class='kw'>mfcol</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>))
 <span class='no'>four_panels</span> <span class='kw'>&lt;-</span> <span class='fu'>lapply</span>(<span class='fl'>1</span>:<span class='fu'>ncol</span>(<span class='no'>ttest2</span>), <span class='kw'>function</span>(<span class='no'>i</span>)
        <span class='fu'>plot_panel</span>(<span class='fu'><a href='extract_run.html'>extract_run</a></span>(<span class='no'>ttest2</span>, <span class='no'>i</span>), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
          <span class='kw'>main</span> <span class='kw'>=</span> <span class='fu'>paste</span>(<span class='st'>"Panel"</span>, <span class='no'>LETTERS</span>[<span class='no'>i</span>], <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>" "</span>)))</div><img src='plot_panel-9.png' alt='' width='540' height='400' /><div class='input'><span class='fu'>par</span>(<span class='kw'>mfcol</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>))
@@ -160,7 +157,7 @@ interval of the input, with the brightest colors for the lowest values.</p>
            <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>half</span> <span class='kw'>=</span> <span class='st'>"right"</span>)</div><img src='plot_panel-12.png' alt='' width='540' height='400' /><div class='input'>
 <span class='co'># plot two panels with every well as only the half of the rectangle</span>
 <span class='no'>ttest3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_adpcr.html'>sim_adpcr</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>765</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>pos_sums</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-                    <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output'><strong class='text-info'>The assumed volume of partitions in each run is equal to 1.</strong></div><div class='output'><strong class='text-info'>The assumed volume uncertainty in each run is equal to 0.</strong></div><div class='input'><span class='fu'>par</span>(<span class='kw'>mfcol</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>))
+                    <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='message'>The assumed volume of partitions in each run is equal to 1.</span></div><div class='output co'>#&gt; <span class='message'>The assumed volume uncertainty in each run is equal to 0.</span></div><div class='input'><span class='fu'>par</span>(<span class='kw'>mfcol</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>))
 <span class='no'>two_panels</span> <span class='kw'>&lt;-</span> <span class='fu'>lapply</span>(<span class='fl'>1</span>:<span class='fu'>ncol</span>(<span class='no'>ttest3</span>), <span class='kw'>function</span>(<span class='no'>i</span>)
        <span class='fu'>plot_panel</span>(<span class='fu'><a href='extract_run.html'>extract_run</a></span>(<span class='no'>ttest3</span>, <span class='no'>i</span>), <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
          <span class='kw'>main</span> <span class='kw'>=</span> <span class='fu'>paste</span>(<span class='st'>"Panel"</span>, <span class='no'>LETTERS</span>[<span class='no'>i</span>], <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>" "</span>)))</div><img src='plot_panel-17.png' alt='' width='540' height='400' /><div class='input'><span class='fu'>par</span>(<span class='kw'>mfcol</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>))</div></pre>

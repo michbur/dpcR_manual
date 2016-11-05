@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate Moments of Poisson Distribution — moments-methods • dpcR</title>
+<title>Calculate Moments of Poisson Distribution � moments-methods • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -110,10 +110,7 @@ computed using the lambda value and the empirical using the sample values.</p>
     <p>Kurtosis: \(\frac{1}{\lambda}\).</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># moments for 100 positive partitions of 765 total partitions</span>
 <span class='fu'>moments</span>(<span class='fu'>c</span>(<span class='fl'>100</span>, <span class='fl'>765</span>))</div><div class='output co'>#&gt;   experiment replicate      method   moment     value
 #&gt; 1    Unknown   Unknown theoretical     mean 0.1400888
@@ -123,8 +120,7 @@ computed using the lambda value and the empirical using the sample values.</p>
 #&gt; 5    Unknown   Unknown   empirical     mean 0.1307190
 #&gt; 6    Unknown   Unknown   empirical variance 0.1137802
 #&gt; 7    Unknown   Unknown   empirical skewness 2.1909760
-#&gt; 8    Unknown   Unknown   empirical kurtosis 2.8003759
-#&gt; </div><div class='input'>
+#&gt; 8    Unknown   Unknown   empirical kurtosis 2.8003759</div><div class='input'>
 <span class='co'># calculate moments for an array digital PCR</span>
 <span class='fu'>moments</span>(<span class='no'>six_panels</span>)</div><div class='output co'>#&gt;     experiment replicate      method   moment       value
 #&gt; 1  Experiment1         1 theoretical     mean  0.01315808
@@ -174,8 +170,7 @@ computed using the lambda value and the empirical using the sample values.</p>
 #&gt; 45 Experiment3         2   empirical     mean  0.12549020
 #&gt; 46 Experiment3         2   empirical variance  0.10988605
 #&gt; 47 Experiment3         2   empirical skewness  2.26102803
-#&gt; 48 Experiment3         2   empirical kurtosis  3.11224776
-#&gt; </div><div class='input'>
+#&gt; 48 Experiment3         2   empirical kurtosis  3.11224776</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

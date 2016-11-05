@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Amplitude Plot VIC and FAM Channels of a Droplet Digital PCR Experiment — plot_vic_fam • dpcR</title>
+<title>Amplitude Plot VIC and FAM Channels of a Droplet Digital PCR Experiment � plot_vic_fam • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -122,10 +122,7 @@ droplet digital polymerase chain reaction format for DNA copy number
 quantification</em>. Anal. Chem. 84, 1003 - 1011.</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Generate an amplitude plot for the first fluorescence channel (e.g., FAM)</span>
 <span class='no'>fluos1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_dpcr.html'>sim_dpcr</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>pos_sums</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n_exp</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -143,7 +140,7 @@ quantification</em>. Anal. Chem. 84, 1003 - 1011.</p>
 <span class='fu'>plot_vic_fam</span>(<span class='kw'>fam</span> <span class='kw'>=</span> <span class='no'>fluos1</span>, <span class='kw'>vic</span> <span class='kw'>=</span> <span class='no'>fluos2</span>, <span class='kw'>col_vic</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>col_fam</span> <span class='kw'>=</span> <span class='st'>"yellow"</span>, <span class='kw'>circle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><img src='plot_vic_fam-6.png' alt='' width='540' height='400' /><div class='input'>
 <span class='co'># Generate two channels in one object and plot them</span>
 <span class='no'>fluos_both</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_dpcr.html'>sim_dpcr</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>16</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>pos_sums</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n_exp</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>fluo</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='fl'>0.1</span>, <span class='fl'>0</span>))</div><div class='output'><strong class='text-info'>The assumed volume of partitions in each run is equal to 1.</strong></div><div class='output'><strong class='text-info'>The assumed volume uncertainty in each run is equal to 0.</strong></div><div class='input'><span class='fu'>plot_vic_fam</span>(<span class='fu'><a href='extract_run.html'>extract_run</a></span>(<span class='no'>fluos_both</span>, <span class='fl'>1</span>), <span class='fu'><a href='extract_run.html'>extract_run</a></span>(<span class='no'>fluos_both</span>, <span class='fl'>2</span>))</div><img src='plot_vic_fam-11.png' alt='' width='540' height='400' /><div class='input'>
+  <span class='kw'>fluo</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='fl'>0.1</span>, <span class='fl'>0</span>))</div><div class='output co'>#&gt; <span class='message'>The assumed volume of partitions in each run is equal to 1.</span></div><div class='output co'>#&gt; <span class='message'>The assumed volume uncertainty in each run is equal to 0.</span></div><div class='input'><span class='fu'>plot_vic_fam</span>(<span class='fu'><a href='extract_run.html'>extract_run</a></span>(<span class='no'>fluos_both</span>, <span class='fl'>1</span>), <span class='fu'><a href='extract_run.html'>extract_run</a></span>(<span class='no'>fluos_both</span>, <span class='fl'>2</span>))</div><img src='plot_vic_fam-11.png' alt='' width='540' height='400' /><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

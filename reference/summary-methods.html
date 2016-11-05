@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Methods for Function  — summary-methods • dpcR</title>
+<title>Methods for Function  � summary-methods • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -121,10 +121,7 @@ Variation in a DNA Sample Using Digital PCR on a Nanofluidic Device</em>.  PLoS
 ONE 3(8), 2008.</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># array dpcr</span>
 <span class='co'># Simulates a chamber based digital PCR with m total number of template molecules  </span>
@@ -134,21 +131,20 @@ ONE 3(8), 2008.</p>
 <span class='co'># gets printed.</span>
 <span class='no'>ptest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_adpcr.html'>sim_adpcr</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>765</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>dube</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='no'>summ</span> <span class='kw'>&lt;-</span> <span class='fu'>summary</span>(<span class='no'>ptest</span>) <span class='co'>#save summary</span></div><div class='output co'>#&gt; 
-#&gt; Number of positive partitions: 301 
+#&gt; Number of positive partitions: 310 
 #&gt; Total number of partitions:    765 
 #&gt; 
 #&gt; Number of runs:        1 
 #&gt; Number of experiments: 1 
 #&gt; 
 #&gt;   experiment replicate   assay method    lambda lambda.low lambda.up        m
-#&gt;  Experiment1         1 Unknown   dube 0.4999913  0.4444862 0.5587592 382.4933
-#&gt;  Experiment1         1 Unknown   bhat 0.4999913  0.4708711 0.5291114 382.4933
+#&gt;  Experiment1         1 Unknown   dube 0.5195784  0.4627337 0.5798503 397.4775
+#&gt;  Experiment1         1 Unknown   bhat 0.5195784  0.4897353 0.5494215 397.4775
 #&gt;     m.low     m.up         c     c.low      c.up   k   n
-#&gt;  340.0319 427.4508 0.4999913 0.4444862 0.5587592 301 765
-#&gt;  360.2164 404.7702 0.4999913 0.4708711 0.5291114 301 765
-#&gt; </div><div class='input'><span class='fu'>print</span>(<span class='no'>summ</span>)</div><div class='output co'>#&gt; $partitions
+#&gt;  353.9913 443.5855 0.5195784 0.4627337 0.5798503 310 765
+#&gt;  374.6475 420.3075 0.5195784 0.4897353 0.5494215 310 765</div><div class='input'><span class='fu'>print</span>(<span class='no'>summ</span>)</div><div class='output co'>#&gt; $partitions
 #&gt; $partitions$k
-#&gt; [1] 301
+#&gt; [1] 310
 #&gt; 
 #&gt; $partitions$n
 #&gt; [1] 765
@@ -156,51 +152,49 @@ ONE 3(8), 2008.</p>
 #&gt; 
 #&gt; $summary
 #&gt;    experiment replicate   assay method    lambda lambda.low lambda.up        m
-#&gt; 1 Experiment1         1 Unknown   dube 0.4999913  0.4444862 0.5587592 382.4933
-#&gt; 2 Experiment1         1 Unknown   bhat 0.4999913  0.4708711 0.5291114 382.4933
+#&gt; 1 Experiment1         1 Unknown   dube 0.5195784  0.4627337 0.5798503 397.4775
+#&gt; 2 Experiment1         1 Unknown   bhat 0.5195784  0.4897353 0.5494215 397.4775
 #&gt;      m.low     m.up         c     c.low      c.up   k   n
-#&gt; 1 340.0319 427.4508 0.4999913 0.4444862 0.5587592 301 765
-#&gt; 2 360.2164 404.7702 0.4999913 0.4708711 0.5291114 301 765
+#&gt; 1 353.9913 443.5855 0.5195784 0.4627337 0.5798503 310 765
+#&gt; 2 374.6475 420.3075 0.5195784 0.4897353 0.5494215 310 765
 #&gt; 
 #&gt; $nexper
 #&gt; [1] 1
 #&gt; 
 #&gt; $nrun
 #&gt; [1] 1
-#&gt; 
 #&gt; </div><div class='input'>
 <span class='co'># multiple experiments</span>
 <span class='co'># Similar to the previous example but with five panels</span>
-<span class='no'>ptest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_adpcr.html'>sim_adpcr</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>765</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>dube</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output'><strong class='text-info'>The assumed volume of partitions in each run is equal to 1.</strong></div><div class='output'><strong class='text-info'>The assumed volume uncertainty in each run is equal to 0.</strong></div><div class='input'><span class='fu'>summary</span>(<span class='no'>ptest</span>)</div><div class='output co'>#&gt; 
-#&gt; Number of positive partitions: 311, 326, 285, 308, ... 
+<span class='no'>ptest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_adpcr.html'>sim_adpcr</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>765</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>dube</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='message'>The assumed volume of partitions in each run is equal to 1.</span></div><div class='output co'>#&gt; <span class='message'>The assumed volume uncertainty in each run is equal to 0.</span></div><div class='input'><span class='fu'>summary</span>(<span class='no'>ptest</span>)</div><div class='output co'>#&gt; 
+#&gt; Number of positive partitions: 290, 314, 316, 313, ... 
 #&gt; Total number of partitions:    765, 765, 765, 765, ... 
 #&gt; 
 #&gt; Number of runs:        5 
 #&gt; Number of experiments: 1 
 #&gt; 
 #&gt;   experiment replicate   assay method    lambda lambda.low lambda.up        m
-#&gt;  Experiment1         1 Unknown   dube 0.5217786  0.4647839 0.5822191 399.1607
-#&gt;  Experiment1         1 Unknown   bhat 0.5217786  0.4918545 0.5517028 399.1607
-#&gt;  Experiment1         2 Unknown   dube 0.5553764  0.4961031 0.6183857 424.8630
-#&gt;  Experiment1         2 Unknown   bhat 0.5553764  0.5242201 0.5865327 424.8630
-#&gt;  Experiment1         3 Unknown   dube 0.4660897  0.4129250 0.5222404 356.5586
-#&gt;  Experiment1         3 Unknown   bhat 0.4660897  0.4382304 0.4939491 356.5586
-#&gt;  Experiment1         4 Unknown   dube 0.5151924  0.4586469 0.5751280 394.1222
-#&gt;  Experiment1         4 Unknown   bhat 0.5151924  0.4855109 0.5448740 394.1222
-#&gt;  Experiment1         5 Unknown   dube 0.5691381  0.5089370 0.6331968 435.3907
-#&gt;  Experiment1         5 Unknown   bhat 0.5691381  0.5374793 0.6007969 435.3907
+#&gt;  Experiment1         1 Unknown   dube 0.4765610  0.4226702 0.5335223 364.5692
+#&gt;  Experiment1         1 Unknown   bhat 0.4765610  0.4483108 0.5048112 364.5692
+#&gt;  Experiment1         2 Unknown   dube 0.5284085  0.4709625 0.5893568 404.2325
+#&gt;  Experiment1         2 Unknown   bhat 0.5284085  0.4982405 0.5585764 404.2325
+#&gt;  Experiment1         3 Unknown   dube 0.5328529  0.4751049 0.5941414 407.6325
+#&gt;  Experiment1         3 Unknown   bhat 0.5328529  0.5025217 0.5631842 407.6325
+#&gt;  Experiment1         4 Unknown   dube 0.5261937  0.4688983 0.5869724 402.5381
+#&gt;  Experiment1         4 Unknown   bhat 0.5261937  0.4961071 0.5562802 402.5381
+#&gt;  Experiment1         5 Unknown   dube 0.5217786  0.4647839 0.5822191 399.1607
+#&gt;  Experiment1         5 Unknown   bhat 0.5217786  0.4918545 0.5517028 399.1607
 #&gt;     m.low     m.up         c     c.low      c.up   k   n
+#&gt;  323.3427 408.1446 0.4765610 0.4226702 0.5335223 290 765
+#&gt;  342.9578 386.1806 0.4765610 0.4483108 0.5048112 290 765
+#&gt;  360.2863 450.8579 0.5284085 0.4709625 0.5893568 314 765
+#&gt;  381.1540 427.3110 0.5284085 0.4982405 0.5585764 314 765
+#&gt;  363.4552 454.5181 0.5328529 0.4751049 0.5941414 316 765
+#&gt;  384.4291 430.8359 0.5328529 0.5025217 0.5631842 316 765
+#&gt;  358.7072 449.0339 0.5261937 0.4688983 0.5869724 313 765
+#&gt;  379.5219 425.5543 0.5261937 0.4961071 0.5562802 313 765
 #&gt;  355.5597 445.3976 0.5217786 0.4647839 0.5822191 311 765
-#&gt;  376.2687 422.0526 0.5217786 0.4918545 0.5517028 311 765
-#&gt;  379.5189 473.0650 0.5553764 0.4961031 0.6183857 326 765
-#&gt;  401.0284 448.6975 0.5553764 0.5242201 0.5865327 326 765
-#&gt;  315.8876 399.5139 0.4660897 0.4129250 0.5222404 285 765
-#&gt;  335.2462 377.8711 0.4660897 0.4382304 0.4939491 285 765
-#&gt;  350.8649 439.9729 0.5151924 0.4586469 0.5751280 308 765
-#&gt;  371.4158 416.8286 0.5151924 0.4855109 0.5448740 308 765
-#&gt;  389.3368 484.3956 0.5691381 0.5089370 0.6331968 332 765
-#&gt;  411.1717 459.6096 0.5691381 0.5374793 0.6007969 332 765
-#&gt; </div><div class='input'>
+#&gt;  376.2687 422.0526 0.5217786 0.4918545 0.5517028 311 765</div><div class='input'>
 <span class='co'># droplet dpcr - fluorescence</span>
 <span class='co'># Simulates a droplet digital PCR with m = 7 total number of template molecules </span>
 <span class='co'># and n = 20 number of  droplets. The summary function on dropletf gives the </span>
@@ -220,26 +214,24 @@ ONE 3(8), 2008.</p>
 #&gt;  Experiment1         1 Unknown   bhat 0.3566749  0.2102899 0.5030600 7.133499
 #&gt;     m.low     m.up         c     c.low      c.up k  n
 #&gt;  2.088629 13.89643 0.3566749 0.1044315 0.6948217 6 20
-#&gt;  4.205799 10.06120 0.3566749 0.2102899 0.5030600 6 20
-#&gt; </div><div class='input'>
+#&gt;  4.205799 10.06120 0.3566749 0.2102899 0.5030600 6 20</div><div class='input'>
 <span class='co'># droplet dpcr - number of molecules</span>
 <span class='co'># Similar to the previous example but with five panels but without and modifications</span>
 <span class='co'>#  to the peaks.</span>
 <span class='no'>droplet</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_dpcr.html'>sim_dpcr</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 <span class='fu'>summary</span>(<span class='no'>droplet</span>)</div><div class='output co'>#&gt; 
-#&gt; Number of positive partitions: 7 
+#&gt; Number of positive partitions: 5 
 #&gt; Total number of partitions:    20 
 #&gt; 
 #&gt; Number of runs:        1 
 #&gt; Number of experiments: 1 
 #&gt; 
 #&gt;   experiment replicate   assay method    lambda lambda.low lambda.up        m
-#&gt;  Experiment1         1 Unknown   dube 0.4307829  0.1519429 0.8187950 8.615658
-#&gt;  Experiment1         1 Unknown   bhat 0.4307829  0.2667004 0.5948654 8.615658
-#&gt;     m.low     m.up         c     c.low      c.up k  n
-#&gt;  3.038859 16.37590 0.4307829 0.1519429 0.8187950 7 20
-#&gt;  5.334008 11.89731 0.4307829 0.2667004 0.5948654 7 20
-#&gt; </div><div class='input'>
+#&gt;  Experiment1         1 Unknown   dube 0.2876821 0.06211724 0.5794127 5.753641
+#&gt;  Experiment1         1 Unknown   bhat 0.2876821 0.15858263 0.4167815 5.753641
+#&gt;     m.low     m.up         c      c.low      c.up k  n
+#&gt;  1.242345 11.58825 0.2876821 0.06211724 0.5794127 5 20
+#&gt;  3.171653  8.33563 0.2876821 0.15858263 0.4167815 5 20</div><div class='input'>
 <span class='co'># Visualize the results of dropletf and dropletf</span>
 <span class='co'># The curves of dropletf are smoother.</span>
 <span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>2</span>))

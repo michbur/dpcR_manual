@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulate Droplet Digital PCR — sim_dpcr • dpcR</title>
+<title>Simulate Droplet Digital PCR � sim_dpcr • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -148,10 +148,7 @@ digital PCR, it&#39;s also viable for simulating droplet-based methods.</p>
     <p><code><a href='sim_adpcr.html'>sim_adpcr</a></code>.</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>#simulate fluorescence data</span>
 <span class='no'>tmp_VIC</span> <span class='kw'>&lt;-</span> <span class='fu'>sim_dpcr</span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>fluo</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='fl'>0.1</span>, <span class='fl'>0</span>))
@@ -170,38 +167,36 @@ digital PCR, it&#39;s also viable for simulating droplet-based methods.</p>
 #&gt;  Experiment1         1 Unknown   bhat 0.7985077  0.5513011  1.045714 15.97015
 #&gt;      m.low     m.up         c     c.low     c.up  k  n
 #&gt;   8.068377 29.22314 0.7985077 0.4034189 1.461157 11 20
-#&gt;  11.026022 20.91429 0.7985077 0.5513011 1.045714 11 20
-#&gt; </div><div class='input'>
-<span class='fu'><a href='summary-methods.html'>summary</a></span>(<span class='fu'>sim_dpcr</span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>n_exp</span> <span class='kw'>=</span> <span class='fl'>5</span>))</div><div class='output'><strong class='text-info'>The assumed volume of partitions in each run is equal to 1.</strong></div><div class='output'><strong class='text-info'>The assumed volume uncertainty in each run is equal to 0.</strong></div><div class='output co'>#&gt; 
-#&gt; Number of positive partitions: 6, 7, 6, 6, ... 
+#&gt;  11.026022 20.91429 0.7985077 0.5513011 1.045714 11 20</div><div class='input'>
+<span class='fu'><a href='summary-methods.html'>summary</a></span>(<span class='fu'>sim_dpcr</span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>n_exp</span> <span class='kw'>=</span> <span class='fl'>5</span>))</div><div class='output co'>#&gt; <span class='message'>The assumed volume of partitions in each run is equal to 1.</span></div><div class='output co'>#&gt; <span class='message'>The assumed volume uncertainty in each run is equal to 0.</span></div><div class='output co'>#&gt; 
+#&gt; Number of positive partitions: 5, 5, 6, 5, ... 
 #&gt; Total number of partitions:    20, 20, 20, 20, ... 
 #&gt; 
 #&gt; Number of runs:        5 
 #&gt; Number of experiments: 1 
 #&gt; 
 #&gt;   experiment replicate   assay method    lambda lambda.low lambda.up        m
-#&gt;  Experiment1         1 Unknown   dube 0.3566749 0.10443145 0.6948217 7.133499
-#&gt;  Experiment1         1 Unknown   bhat 0.3566749 0.21028993 0.5030600 7.133499
-#&gt;  Experiment1         2 Unknown   dube 0.4307829 0.15194293 0.8187950 8.615658
-#&gt;  Experiment1         2 Unknown   bhat 0.4307829 0.26670039 0.5948654 8.615658
+#&gt;  Experiment1         1 Unknown   dube 0.2876821 0.06211724 0.5794127 5.753641
+#&gt;  Experiment1         1 Unknown   bhat 0.2876821 0.15858263 0.4167815 5.753641
+#&gt;  Experiment1         2 Unknown   dube 0.2876821 0.06211724 0.5794127 5.753641
+#&gt;  Experiment1         2 Unknown   bhat 0.2876821 0.15858263 0.4167815 5.753641
 #&gt;  Experiment1         3 Unknown   dube 0.3566749 0.10443145 0.6948217 7.133499
 #&gt;  Experiment1         3 Unknown   bhat 0.3566749 0.21028993 0.5030600 7.133499
-#&gt;  Experiment1         4 Unknown   dube 0.3566749 0.10443145 0.6948217 7.133499
-#&gt;  Experiment1         4 Unknown   bhat 0.3566749 0.21028993 0.5030600 7.133499
-#&gt;  Experiment1         5 Unknown   dube 0.2231436 0.02500554 0.4704910 4.462871
-#&gt;  Experiment1         5 Unknown   bhat 0.2231436 0.11134015 0.3349470 4.462871
-#&gt;      m.low      m.up         c      c.low      c.up k  n
-#&gt;  2.0886291 13.896433 0.3566749 0.10443145 0.6948217 6 20
-#&gt;  4.2057987 10.061199 0.3566749 0.21028993 0.5030600 6 20
-#&gt;  3.0388586 16.375900 0.4307829 0.15194293 0.8187950 7 20
-#&gt;  5.3340077 11.897309 0.4307829 0.26670039 0.5948654 7 20
-#&gt;  2.0886291 13.896433 0.3566749 0.10443145 0.6948217 6 20
-#&gt;  4.2057987 10.061199 0.3566749 0.21028993 0.5030600 6 20
-#&gt;  2.0886291 13.896433 0.3566749 0.10443145 0.6948217 6 20
-#&gt;  4.2057987 10.061199 0.3566749 0.21028993 0.5030600 6 20
-#&gt;  0.5001108  9.409819 0.2231436 0.02500554 0.4704910 4 20
-#&gt;  2.2268030  6.698939 0.2231436 0.11134015 0.3349470 4 20
-#&gt; </div><div class='input'>
+#&gt;  Experiment1         4 Unknown   dube 0.2876821 0.06211724 0.5794127 5.753641
+#&gt;  Experiment1         4 Unknown   bhat 0.2876821 0.15858263 0.4167815 5.753641
+#&gt;  Experiment1         5 Unknown   dube 0.4307829 0.15194293 0.8187950 8.615658
+#&gt;  Experiment1         5 Unknown   bhat 0.4307829 0.26670039 0.5948654 8.615658
+#&gt;     m.low     m.up         c      c.low      c.up k  n
+#&gt;  1.242345 11.58825 0.2876821 0.06211724 0.5794127 5 20
+#&gt;  3.171653  8.33563 0.2876821 0.15858263 0.4167815 5 20
+#&gt;  1.242345 11.58825 0.2876821 0.06211724 0.5794127 5 20
+#&gt;  3.171653  8.33563 0.2876821 0.15858263 0.4167815 5 20
+#&gt;  2.088629 13.89643 0.3566749 0.10443145 0.6948217 6 20
+#&gt;  4.205799 10.06120 0.3566749 0.21028993 0.5030600 6 20
+#&gt;  1.242345 11.58825 0.2876821 0.06211724 0.5794127 5 20
+#&gt;  3.171653  8.33563 0.2876821 0.15858263 0.4167815 5 20
+#&gt;  3.038859 16.37590 0.4307829 0.15194293 0.8187950 7 20
+#&gt;  5.334008 11.89731 0.4307829 0.26670039 0.5948654 7 20</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

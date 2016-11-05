@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert data.frame to dpcr object — df2dpcr • dpcR</title>
+<title>Convert data.frame to dpcr object � df2dpcr • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -119,10 +119,7 @@ depends on the presence of additional column with panel indices (see Details).</
 Inverse function: <code><a href='dpcr2df-methods.html'>dpcr2df</a></code></p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>experiment</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='fu'>rep</span>(<span class='fu'>paste0</span>(<span class='st'>"Experiment"</span>, <span class='fl'>1L</span>:<span class='fl'>2</span>), <span class='fl'>3</span>)),
                   <span class='kw'>replicate</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>3</span>),
                   <span class='kw'>assay</span> <span class='kw'>=</span> <span class='st'>"Assay1"</span>,
@@ -130,7 +127,7 @@ Inverse function: <code><a href='dpcr2df-methods.html'>dpcr2df</a></code></p>
                   <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>765</span>,
                   <span class='kw'>v</span> <span class='kw'>=</span> <span class='fl'>1</span>,
                   <span class='kw'>uv</span> <span class='kw'>=</span> <span class='fl'>0</span>)
-<span class='fu'>df2dpcr</span>(<span class='no'>dat</span>)</div><div class='output'><strong class='text-info'>The assumed volume uncertainty in each run is equal to 0.</strong></div><div class='output co'>#&gt;      Experiment1.1 Experiment2.1 Experiment1.2 Experiment2.2 Experiment1.3
+<span class='fu'>df2dpcr</span>(<span class='no'>dat</span>)</div><div class='output co'>#&gt; <span class='message'>The assumed volume uncertainty in each run is equal to 0.</span></div><div class='output co'>#&gt;      Experiment1.1 Experiment2.1 Experiment1.2 Experiment2.2 Experiment1.3
 #&gt; [1,]            55           121            43           150            70
 #&gt;      Experiment2.3
 #&gt; [1,]           131

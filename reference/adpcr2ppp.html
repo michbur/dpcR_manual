@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert adpcr to ppp â€” adpcr2ppp â€¢ dpcR</title>
+<title>Convert adpcr to ppp — adpcr2ppp â€¢ dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -112,39 +112,35 @@ the <code><a href='adpcr-class.html'>adpcr</a></code> object.</p>
     <p><code><a href='http://www.rdocumentation.org/packages/spatstat/topics/ppp.object'>ppp.object</a></code>, <code><a href='http://www.rdocumentation.org/packages/spatstat/topics/ppp'>ppp</a></code>.</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='no'>many_panels</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_adpcr.html'>sim_adpcr</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>765</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>pos_sums</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-                   <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output'><strong class='text-info'>The assumed volume of partitions in each run is equal to 1.</strong></div><div class='output'><strong class='text-info'>The assumed volume uncertainty in each run is equal to 0.</strong></div><div class='input'>
+                   <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='message'>The assumed volume of partitions in each run is equal to 1.</span></div><div class='output co'>#&gt; <span class='message'>The assumed volume uncertainty in each run is equal to 0.</span></div><div class='input'>
 <span class='co'># Convert all arrays to ppp objects</span>
 <span class='fu'>adpcr2ppp</span>(<span class='no'>many_panels</span>)</div><div class='output co'>#&gt; $Experiment1.1
-#&gt; Marked planar point pattern: 309 points
-#&gt; marks are numeric, of storage type  â€˜doubleâ€™
+#&gt; Marked planar point pattern: 290 points
+#&gt; marks are numeric, of storage type  ‘double’
 #&gt; window: rectangle = [1, 45] x [1, 17] units
 #&gt; 
 #&gt; $Experiment1.2
-#&gt; Marked planar point pattern: 288 points
-#&gt; marks are numeric, of storage type  â€˜doubleâ€™
+#&gt; Marked planar point pattern: 317 points
+#&gt; marks are numeric, of storage type  ‘double’
 #&gt; window: rectangle = [1, 45] x [1, 17] units
 #&gt; 
 #&gt; $Experiment1.3
-#&gt; Marked planar point pattern: 307 points
-#&gt; marks are numeric, of storage type  â€˜doubleâ€™
+#&gt; Marked planar point pattern: 318 points
+#&gt; marks are numeric, of storage type  ‘double’
 #&gt; window: rectangle = [1, 45] x [1, 17] units
 #&gt; 
 #&gt; $Experiment1.4
-#&gt; Marked planar point pattern: 297 points
-#&gt; marks are numeric, of storage type  â€˜doubleâ€™
+#&gt; Marked planar point pattern: 299 points
+#&gt; marks are numeric, of storage type  ‘double’
 #&gt; window: rectangle = [1, 45] x [1, 17] units
 #&gt; 
 #&gt; $Experiment1.5
-#&gt; Marked planar point pattern: 305 points
-#&gt; marks are numeric, of storage type  â€˜doubleâ€™
+#&gt; Marked planar point pattern: 322 points
+#&gt; marks are numeric, of storage type  ‘double’
 #&gt; window: rectangle = [1, 45] x [1, 17] units
-#&gt; 
 #&gt; </div><div class='input'>
 <span class='co'># Convert all arrays to ppp objects and get third plate</span>
 <span class='no'>third_plate</span> <span class='kw'>&lt;-</span> <span class='fu'>adpcr2ppp</span>(<span class='no'>many_panels</span>)<span class='kw'>[[</span><span class='fl'>3</span>]]
@@ -153,12 +149,10 @@ the <code><a href='adpcr-class.html'>adpcr</a></code> object.</p>
 <span class='no'>third_plate2</span> <span class='kw'>&lt;-</span> <span class='fu'>adpcr2ppp</span>(<span class='fu'><a href='extract_run.html'>extract_run</a></span>(<span class='no'>many_panels</span>, <span class='fl'>3</span>))
 
 <span class='co'># Check the class of a new object</span>
-<span class='fu'>class</span>(<span class='no'>third_plate2</span>)</div><div class='output co'>#&gt; [1] &quot;list&quot;
-#&gt; </div><div class='input'>
+<span class='fu'>class</span>(<span class='no'>third_plate2</span>)</div><div class='output co'>#&gt; [1] &quot;list&quot;</div><div class='input'>
 <span class='co'># It's a list with the length 1. The third plate is a first element on this </span>
 <span class='co'>#list</span>
-<span class='fu'>class</span>(<span class='no'>third_plate2</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] &quot;ppp&quot;
-#&gt; </div><div class='input'>
+<span class='fu'>class</span>(<span class='no'>third_plate2</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] &quot;ppp&quot;</div><div class='input'>
 
 </div></pre>
   </div>

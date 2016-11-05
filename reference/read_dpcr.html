@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read digital PCR data — read_dpcr • dpcR</title>
+<title>Read digital PCR data � read_dpcr • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -81,7 +81,7 @@
     <p>Reads digital PCR data in various formats.</p>
     
 
-    <pre><span class='fu'>read_dpcr</span>(<span class='no'>input</span>, <span class='no'>format</span>, <span class='no'>...</span>)</pre>
+    <pre><span class='fu'>read_dpcr</span>(<span class='no'>input</span>, <span class='no'>format</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -91,6 +91,8 @@
       <dt>format</dt>
       <dd>of the file, for example: <code>&quot;raw&quot;</code>, <code>&quot;QX100&quot;</code>, 
 <code>&quot;BioMark&quot;</code>, <code>&quot;amp&quot;</code> (raw amplitude compressed using <code>.zip</code>).</dd>
+      <dt>ext</dt>
+      <dd>extension of the file ().</dd>
       <dt>...</dt>
       <dd>additional parameters for the appropriate function. For example, if 
 <code>format</code> has value <code>&quot;raw&quot;</code>, the additional parameter must be 

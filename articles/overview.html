@@ -50,7 +50,6 @@
 \lambda = - \ln \left(1 - \frac{k}{n} \right)
 \]</span></p>
 <p>We firstly describe <code>dpcr</code> class, a parent class for all classes designed to contain dPCR data. Further, we inspect closer <code>adpcr</code> class responsible for array-based dPCR experiments (all experiments, where output data has precise localization in two dimensions).</p>
-<p>TO DO ddpcr</p>
 <p>Real-time quantitative qPCR (qPCR) experiments do not follow the fundamental assumption of dPCR reactions (the mean number of template molecule per partition smaller than 1). However, it is possible to &lsquo;convert&rsquo; the qPCR. We present a tool to analyze results from <em>high-throughput</em> qPCR systems by using the dPCR analysis methodology as implemented in the <strong>dpcR</strong> package. The <code>qpcr2pp</code> function converts qPCR amplification curve data to a <code>qdpcr</code> object (see section about <code>qdpcr</code>). The calculation of the Cq&rsquo;s from the amplification curves is internally done via functions from the <strong>qpcR</strong> package by <span class="citation">Ritz and Spiess (2008)</span>.</p>
 <div id="dpcr-object" class="section level1">
 <h1 class="hasAnchor"><html><body><a href="#dpcr-object" class="anchor"> </a></body></html><code>dpcr</code> object</h1>
@@ -99,19 +98,19 @@ res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bind_dp
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Print the whole data</span>
 <span class="kw">slot</span>(res, <span class="st">".Data"</span>)</code></pre></div>
 <pre><code>##       Experiment11.1 Experiment12.1 Experiment12.1
-##  [1,]              0              3              2
-##  [2,]              0              1              1
+##  [1,]              0              1              3
+##  [2,]              0              0              1
 ##  [3,]              1              0              3
-##  [4,]              1              0              2
+##  [4,]              0              1              2
 ##  [5,]              0              0              1
-##  [6,]              1              0             NA
-##  [7,]              1              0             NA
-##  [8,]              1              3             NA
-##  [9,]              0              1             NA
-## [10,]              1              3             NA
-## [11,]              0             NA             NA
-## [12,]              0             NA             NA
-## [13,]              3             NA             NA
+##  [6,]              0              0             NA
+##  [7,]              0              2             NA
+##  [8,]              0              2             NA
+##  [9,]              0              3             NA
+## [10,]              2              1             NA
+## [11,]              1             NA             NA
+## [12,]              3             NA             NA
+## [13,]              2             NA             NA
 ## [14,]              0             NA             NA
 ## [15,]              1             NA             NA</code></pre>
 <p><code>extract_run</code> is an equivalent of <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Extract.html">Extract</a>. It extracts one or more runs from the <code>dpcr</code> objects preserving other properties (as an adequate replicate ID and so on).</p>
@@ -120,11 +119,11 @@ res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bind_dp
 <pre><code>## The assumed volume uncertainty in each run is equal to 0.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(five_runs)</code></pre></div>
 <pre><code>##      Experiment1.1 Experiment1.2 Experiment1.3 Experiment1.4 Experiment1.5
-## [1,]             0             0             0             1             0
-## [2,]             1             0             0             0             1
-## [3,]             0             0             1             0             0
+## [1,]             0             0             1             0             0
+## [2,]             0             0             0             0             0
+## [3,]             1             1             0             0             0
 ## [4,]             0             0             0             0             0
-## [5,]             0             0             0             0             0
+## [5,]             1             0             0             0             0
 ## 
 ## 5 data points ommited.
 ## Data type: 'nm'</code></pre>
@@ -165,9 +164,9 @@ sample_adpcr &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <pre><code>##        Experiment1.1 Experiment2.1
 ## [760,]             0             0
 ## [761,]             0             0
-## [762,]             1             0
+## [762,]             0             0
 ## [763,]             0             0
-## [764,]             0            NA
+## [764,]             1            NA
 ## [765,]             0            NA</code></pre>
 <p>Both experiments have 765 data points. We see that in case of shorter experiment, 2 data points has value NA. If we analyze the <em>n</em> slot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">slot</span>(sample_adpcr, <span class="st">"n"</span>)</code></pre></div>
@@ -177,15 +176,15 @@ sample_adpcr &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Quickly count positive partitions</span>
 <span class="kw">colSums</span>(sample_adpcr &gt;<span class="st"> </span><span class="dv">0</span>)</code></pre></div>
 <pre><code>## Experiment1.1 Experiment2.1 
-##            92            NA</code></pre>
+##            98            NA</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Baseline fluorescence data</span>
 <span class="kw"><a href="../reference/sim_dpcr.html">sim_dpcr</a></span>(<span class="dt">m =</span> <span class="dv">3</span>, <span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">times =</span> <span class="dv">5</span>, <span class="dt">fluo =</span> <span class="kw">list</span>(<span class="fl">0.1</span>, <span class="dv">0</span>)) -<span class="st"> </span><span class="fl">0.05</span></code></pre></div>
 <pre><code>##      Experiment1.1
-## [1,]   -0.05000000
-## [2,]    0.04983342
-## [3,]    0.14866933
-## [4,]    0.24552021
-## [5,]    0.33941834
+## [1,]         -0.05
+## [2,]         -0.05
+## [3,]         -0.05
+## [4,]         -0.05
+## [5,]         -0.05
 ## 
 ## 59 data points ommited.
 ## Data type: 'fluo'</code></pre>
@@ -231,8 +230,8 @@ sample_adpcr &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <pre><code>##      Experiment1.1 Experiment1.2 Experiment1.3
 ## [1,]             0             0             0
 ## [2,]             1             0             1
-## [3,]             1             0             0
-## [4,]             0             1             0
+## [3,]             0             1             0
+## [4,]             0             0             1
 ## [5,]             0             0             0
 ## 
 ## 760 data points ommited.
@@ -255,7 +254,7 @@ sample_adpcr &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <pre><code>## The assumed volume of partitions in each run is equal to 1.
 ## The assumed volume uncertainty in each run is equal to 0.</code></pre>
 <pre><code>##      Experiment1.1 Experiment1.2 Experiment1.3
-## [1,]           213           197           204
+## [1,]           203           188           211
 ## 
 ## Data type: 'tnp'</code></pre>
 </div>
@@ -386,7 +385,7 @@ summ[[<span class="st">"summary"</span>]][summ[[<span class="st">"summary"</span
 <span class="kw"><a href="../reference/show-methods.html">show</a></span>(sample_dpcr)</code></pre></div>
 <pre><code>##      Experiment1.1
 ## [1,]             0
-## [2,]             0
+## [2,]             2
 ## [3,]             0
 ## [4,]             0
 ## [5,]             0
@@ -397,7 +396,7 @@ summ[[<span class="st">"summary"</span>]][summ[[<span class="st">"summary"</span
 sample_dpcr</code></pre></div>
 <pre><code>##      Experiment1.1
 ## [1,]             0
-## [2,]             0
+## [2,]             2
 ## [3,]             0
 ## [4,]             0
 ## [5,]             0
@@ -408,15 +407,15 @@ sample_dpcr</code></pre></div>
 <span class="kw">slot</span>(sample_dpcr, <span class="st">".Data"</span>)</code></pre></div>
 <pre><code>##       Experiment1.1
 ##  [1,]             0
-##  [2,]             0
+##  [2,]             2
 ##  [3,]             0
 ##  [4,]             0
 ##  [5,]             0
 ##  [6,]             0
 ##  [7,]             0
-##  [8,]             1
+##  [8,]             0
 ##  [9,]             1
-## [10,]             1</code></pre>
+## [10,]             0</code></pre>
 </div>
 </div>
 <div id="adpcr-class" class="section level1">
@@ -536,6 +535,22 @@ qdat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/qpcr2p
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(qdat)</code></pre></div>
 <p><img src="overview_files/figure-html/unnamed-chunk-20-1.png" width="576"></p>
 </div>
+<div id="data-import" class="section level1">
+<h1 class="hasAnchor"><html><body><a href="#data-import" class="anchor"> </a></body></html>Data import</h1>
+<p>Import functions accessible under <code>read_dpcr</code> covers many common dPCR systems. To further extend the scope of our software, we propose a universal dPCR data exchange format REDF (raw exchange digital PCR format).</p>
+<div id="redf" class="section level2">
+<h2 class="hasAnchor"><html><body><a href="#redf" class="anchor"> </a></body></html>REDF</h2>
+<p>REDF (Raw Exchange Digital PCR Format) has tabular structure. Each run of dPCR is described using following properties:</p>
+<ol style="list-style-type: decimal"><li><strong>experiment</strong>: name of the experiment to which run belongs.</li>
+<li><strong>replicate</strong>: name or ID of the replicate of the experiment.</li>
+<li><strong>assay</strong>: name of the assay to which experiment belongs. Often name of the channel used to detect positive partitions.</li>
+<li><strong>k</strong>: number of positive partitions (integer).</li>
+<li><strong>n</strong>: total number of partitions (integer).</li>
+<li><strong>v</strong>: volume of the partition (nL).</li>
+<li><strong>uv</strong>: uncertainty of partition&rsquo;s volume (nL).</li>
+<li><strong>panel_id</strong>: id of the panel (integer).</li>
+</ol></div>
+</div>
 <div id="comparison-of-the-experiments" class="section level1">
 <h1 class="hasAnchor"><html><body><a href="#comparison-of-the-experiments" class="anchor"> </a></body></html>Comparison of the experiments</h1>
 <div id="glm" class="section level2">
@@ -645,8 +660,8 @@ comp_ratio &lt;-<span class="st"> </span><span class="kw"><a href="../reference/
 <p>To assess simultaneous coverage probability, we randomly divided experiments into 2000 groups (500 experiments each) for each possible value of <span class="math inline">\(\lambda\)</span>. We counted frequency of groups in which all confidence intervals contain the true value of <span class="math inline">\(\lambda\)</span>.</p>
 <p><img src="overview_files/figure-html/unnamed-chunk-24-1.png" width="576"></p>
 <p>The dashed black line marks 0.95 border.</p>
-<!-- html table generated in R 3.3.1 by xtable 1.8-2 package -->
-<!-- Tue Nov  1 10:41:16 2016 -->
+<!-- html table generated in R 3.3.2 by xtable 1.8-2 package -->
+<!-- Sat Nov 05 23:39:43 2016 -->
 <table border="1" class="table"><tr><th>
 Method name
 </th>
@@ -737,13 +752,13 @@ Simultaneous probability coverage
 <p>Huggett, Jim F., Simon Cowen, and Carole A. Foy. 2014. &ldquo;Considerations for Digital PCR as an Accurate Molecular Diagnostic Tool.&rdquo; <em>Clinical Chemistry</em>, October, clinchem.2014.221366. doi:<a href="https://doi.org/10.1373/clinchem.2014.221366">10.1373/clinchem.2014.221366</a>.</p>
 </div>
 <div id="ref-pabinger_survey_2014">
-<p>Pabinger, Stephan, Stefan R&ouml;diger, Albert Kriegner, Klemens Vierlinger, and Andreas Weinh&auml;usel. 2014. &ldquo;A Survey of Tools for the Analysis of Quantitative PCR (QPCR) Data.&rdquo; <em>Biomolecular Detection and Quantification</em> 1 (1): 23&ndash;33. doi:<a href="https://doi.org/10.1016/j.bdq.2014.08.002">10.1016/j.bdq.2014.08.002</a>.</p>
+<p>Pabinger, Stephan, Stefan R&ouml;diger, Albert Kriegner, Klemens Vierlinger, and Andreas Weinh&auml;usel. 2014. &ldquo;A Survey of Tools for the Analysis of Quantitative PCR (qPCR) Data.&rdquo; <em>Biomolecular Detection and Quantification</em> 1 (1): 23&ndash;33. doi:<a href="https://doi.org/10.1016/j.bdq.2014.08.002">10.1016/j.bdq.2014.08.002</a>.</p>
 </div>
 <div id="ref-ritz_qpcr_2008">
-<p>Ritz, Christian, and Andrej-Nikolai Spiess. 2008. &ldquo;QpcR: An R Package for Sigmoidal Model Selection in Quantitative Real-Time Polymerase Chain Reaction Analysis.&rdquo; <em>Bioinformatics</em> 24 (13): 1549&ndash;51. doi:<a href="https://doi.org/10.1093/bioinformatics/btn227">10.1093/bioinformatics/btn227</a>.</p>
+<p>Ritz, Christian, and Andrej-Nikolai Spiess. 2008. &ldquo;qpcR: An R Package for Sigmoidal Model Selection in Quantitative Real-Time Polymerase Chain Reaction Analysis.&rdquo; <em>Bioinformatics</em> 24 (13): 1549&ndash;51. doi:<a href="https://doi.org/10.1093/bioinformatics/btn227">10.1093/bioinformatics/btn227</a>.</p>
 </div>
 <div id="ref-roediger2015chippcr">
-<p>R&ouml;diger, Stefan, Micha&#322; Burdukiewicz, and Peter Schierack. 2015. &ldquo;ChipPCR: An R Package to Pre-Process Raw Data of Amplification Curves.&rdquo; <em>Bioinformatics</em> 31 (17): 2900&ndash;2902. doi:<a href="https://doi.org/10.1093/bioinformatics/btv205">10.1093/bioinformatics/btv205</a>.</p>
+<p>R&ouml;diger, Stefan, Micha&#322; Burdukiewicz, and Peter Schierack. 2015. &ldquo;chipPCR: an R package to pre-process raw data of amplification curves.&rdquo; <em>Bioinformatics</em> 31 (17): 2900&ndash;2902. doi:<a href="https://doi.org/10.1093/bioinformatics/btv205">10.1093/bioinformatics/btv205</a>.</p>
 </div>
 </div>
 </div>
@@ -765,6 +780,8 @@ Simultaneous probability coverage
       <li><a href="#array-testing">Array testing</a></li>
       </ul></li>
       <li><a href="#qdpcr-class"><code>qdpcr</code> class</a></li>
+      <li><a href="#data-import">Data import</a><ul class="nav nav-pills nav-stacked"><li><a href="#redf">REDF</a></li>
+      </ul></li>
       <li><a href="#comparison-of-the-experiments">Comparison of the experiments</a><ul class="nav nav-pills nav-stacked"><li><a href="#glm">GLM</a></li>
       <li><a href="#multiple-tests">Multiple tests</a></li>
       <li><a href="#comparison-of-frameworks">Comparison of frameworks</a></li>

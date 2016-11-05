@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Limit Cy0 values â€” limit_cq â€¢ dpcR</title>
+<title>Limit Cy0 values — limit_cq â€¢ dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -150,17 +150,15 @@ precision, and implications</em>. Methods, San Diego Calif 59:32--46.</p>
     <p>Cy0 method: <code><a href='http://www.rdocumentation.org/packages/qpcR/topics/mselect'>mselect</a></code>, <code><a href='http://www.rdocumentation.org/packages/qpcR/topics/efficiency'>efficiency</a></code>.</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>library</span>(<span class='no'>qpcR</span>)</div><div class='output'><strong class='text-info'>Loading required package: MASS</strong></div><div class='output'><strong class='text-info'>Loading required package: minpack.lm</strong></div><div class='output'><strong class='text-info'>Loading required package: rgl</strong></div><div class='output'><strong class='text-info'>Loading required package: robustbase</strong></div><div class='output'><strong class='text-info'>Loading required package: Matrix</strong></div><div class='output'><strong class='text-info'>
-Attaching package: â€˜qpcRâ€™
-</strong></div><div class='output'><strong class='text-info'>The following object is masked from â€˜package:dpcRâ€™:
-
-    l5
-</strong></div><div class='input'><span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'>cbind</span>(<span class='no'>reps</span>[<span class='fl'>1L</span>:<span class='fl'>45</span>, ], <span class='no'>reps2</span>[<span class='fl'>1L</span>:<span class='fl'>45</span>, <span class='fl'>2L</span>:<span class='fu'>ncol</span>(<span class='no'>reps2</span>)], <span class='no'>reps3</span>[<span class='fl'>1L</span>:<span class='fl'>45</span>,
+<span class='fu'>library</span>(<span class='no'>qpcR</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: MASS</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: minpack.lm</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: rgl</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: robustbase</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘robustbase’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    sigma</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘qpcR’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:dpcR’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    l5</span></div><div class='input'><span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'>cbind</span>(<span class='no'>reps</span>[<span class='fl'>1L</span>:<span class='fl'>45</span>, ], <span class='no'>reps2</span>[<span class='fl'>1L</span>:<span class='fl'>45</span>, <span class='fl'>2L</span>:<span class='fu'>ncol</span>(<span class='no'>reps2</span>)], <span class='no'>reps3</span>[<span class='fl'>1L</span>:<span class='fl'>45</span>,
               <span class='fl'>2L</span>:<span class='fu'>ncol</span>(<span class='no'>reps3</span>)])
 
 <span class='co'># results.dPCR contains a column with the Cy0 values and a column with </span>

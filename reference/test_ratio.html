@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rate ratio test — test_ratio • dpcR</title>
+<title>Rate ratio test � test_ratio • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -138,10 +138,7 @@ intervals for discrete data</em> R Journal 2 (1), 2010.</p>
     <p>See also <code><a href='http://www.rdocumentation.org/packages/stats/topics/poisson.test'>poisson.test</a></code>.</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Input values are numeric vectors representing dPCR experiments</span>
 <span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='fu'>rpois</span>(<span class='fl'>765</span>, <span class='fl'>1.1</span>)
@@ -149,16 +146,15 @@ intervals for discrete data</em> R Journal 2 (1), 2010.</p>
 <span class='fu'>test_ratio</span>(<span class='no'>x1</span>, <span class='no'>x2</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Exact Rate Ratio Test, assuming Poisson counts
 #&gt; 
-#&gt; data:  dPCR 1: positive partitions: 505; total partitions: 765.
-#&gt;        dPCR 2: positive partitions: 503; total partitions: 765.
-#&gt; p-value = 0.9749
+#&gt; data:  dPCR 1: positive partitions: 506; total partitions: 765.
+#&gt;        dPCR 2: positive partitions: 497; total partitions: 765.
+#&gt; p-value = 0.8006
 #&gt; alternative hypothesis: two.sided
 #&gt; 95 percent confidence interval:
-#&gt;  0.885601 1.138183
+#&gt;  0.8977905 1.1545930
 #&gt; sample estimates:
 #&gt;         Lambda1         Lambda2 Lambda1/Lambda2 
-#&gt;        1.079194        1.071531        1.003976 
-#&gt; 
+#&gt;        1.083048        1.048889        1.018109 
 #&gt; </div><div class='input'>
 <span class='co'># Input values represent only number of positive partitions and total </span>
 <span class='co'># partitions</span>
@@ -167,32 +163,30 @@ intervals for discrete data</em> R Journal 2 (1), 2010.</p>
 <span class='fu'>test_ratio</span>(<span class='fu'>c</span>(<span class='no'>x3</span>, <span class='fl'>765</span>), <span class='fu'>c</span>(<span class='no'>x4</span>, <span class='fl'>765</span>))</div><div class='output co'>#&gt; 
 #&gt; 	Exact Rate Ratio Test, assuming Poisson counts
 #&gt; 
-#&gt; data:  dPCR 1: positive partitions: 526; total partitions: 765.
-#&gt;        dPCR 2: positive partitions: 520; total partitions: 765.
-#&gt; p-value = 0.8771
+#&gt; data:  dPCR 1: positive partitions: 527; total partitions: 765.
+#&gt;        dPCR 2: positive partitions: 518; total partitions: 765.
+#&gt; p-value = 0.8046
 #&gt; alternative hypothesis: two.sided
 #&gt; 95 percent confidence interval:
-#&gt;  0.8943633 1.1440906
+#&gt;  0.8994722 1.1507697
 #&gt; sample estimates:
 #&gt;         Lambda1         Lambda2 Lambda1/Lambda2 
-#&gt;        1.163412        1.138618        1.011538 
-#&gt; 
+#&gt;        1.167605        1.130487        1.017375 
 #&gt; </div><div class='input'>
 <span class='co'># It is possible to mix different types of input as long as they have </span>
 <span class='co'># the same class</span>
 <span class='fu'>test_ratio</span>(<span class='fu'>c</span>(<span class='no'>x3</span>, <span class='fl'>765</span>), <span class='no'>x1</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Exact Rate Ratio Test, assuming Poisson counts
 #&gt; 
-#&gt; data:  dPCR 1: positive partitions: 526; total partitions: 765.
-#&gt;        dPCR 2: positive partitions: 505; total partitions: 765.
-#&gt; p-value = 0.5334
+#&gt; data:  dPCR 1: positive partitions: 527; total partitions: 765.
+#&gt;        dPCR 2: positive partitions: 506; total partitions: 765.
+#&gt; p-value = 0.5338
 #&gt; alternative hypothesis: two.sided
 #&gt; 95 percent confidence interval:
-#&gt;  0.9200984 1.1792044
+#&gt;  0.920138 1.178967
 #&gt; sample estimates:
 #&gt;         Lambda1         Lambda2 Lambda1/Lambda2 
-#&gt;        1.163412        1.079194        1.041584 
-#&gt; 
+#&gt;        1.167605        1.083048        1.041502 
 #&gt; </div><div class='input'>
 <span class='co'># The same is true for adpcr and dpcr objects.</span>
 <span class='no'>x5</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_adpcr.html'>sim_adpcr</a></span>(<span class='fl'>400</span>, <span class='fl'>1600</span>, <span class='fl'>100</span>, <span class='kw'>pos_sums</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>1</span>)
@@ -200,32 +194,30 @@ intervals for discrete data</em> R Journal 2 (1), 2010.</p>
 <span class='fu'>test_ratio</span>(<span class='no'>x5</span>, <span class='no'>x6</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Exact Rate Ratio Test, assuming Poisson counts
 #&gt; 
-#&gt; data:  dPCR 1: positive partitions: 345; total partitions: 1600.
-#&gt;        dPCR 2: positive partitions: 359; total partitions: 1600.
-#&gt; p-value = 0.6242
+#&gt; data:  dPCR 1: positive partitions: 329; total partitions: 1600.
+#&gt;        dPCR 2: positive partitions: 355; total partitions: 1600.
+#&gt; p-value = 0.3391
 #&gt; alternative hypothesis: two.sided
 #&gt; 95 percent confidence interval:
-#&gt;  0.826576 1.117163
+#&gt;  0.7952394 1.0797878
 #&gt; sample estimates:
 #&gt;         Lambda1         Lambda2 Lambda1/Lambda2 
-#&gt;       0.2428681       0.2540861       0.9610028 
-#&gt; 
+#&gt;       0.2301996       0.2508681       0.9267606 
 #&gt; </div><div class='input'>
 <span class='no'>x7</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_dpcr.html'>sim_dpcr</a></span>(<span class='fl'>400</span>, <span class='fl'>1600</span>, <span class='fl'>100</span>, <span class='kw'>pos_sums</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>n_exp</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='no'>x8</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_dpcr.html'>sim_dpcr</a></span>(<span class='fl'>400</span>, <span class='fl'>1600</span>, <span class='fl'>100</span>, <span class='kw'>pos_sums</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n_exp</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='fu'>test_ratio</span>(<span class='no'>x7</span>, <span class='no'>x8</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Exact Rate Ratio Test, assuming Poisson counts
 #&gt; 
-#&gt; data:  dPCR 1: positive partitions: 349; total partitions: 1600.
-#&gt;        dPCR 2: positive partitions: 355; total partitions: 1600.
-#&gt; p-value = 0.8505
+#&gt; data:  dPCR 1: positive partitions: 346; total partitions: 1600.
+#&gt;        dPCR 2: positive partitions: 328; total partitions: 1600.
+#&gt; p-value = 0.5126
 #&gt; alternative hypothesis: two.sided
 #&gt; 95 percent confidence interval:
-#&gt;  0.8456299 1.1428582
+#&gt;  0.9043607 1.2306464
 #&gt; sample estimates:
 #&gt;         Lambda1         Lambda2 Lambda1/Lambda2 
-#&gt;       0.2460604       0.2508681       0.9830986 
-#&gt; 
+#&gt;       0.2436652       0.2294132       1.0548780 
 #&gt; </div><div class='input'>
 </div></pre>
   </div>

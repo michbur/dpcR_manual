@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>qPCR Analyser — qpcr_analyser • dpcR</title>
+<title>qPCR Analyser � qpcr_analyser • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -160,27 +160,20 @@ data. <a href = 'http://CRAN.R-project.org/package=qpcR'>http://CRAN.R-project.o
     <p><a href='http://www.rdocumentation.org/packages/qpcR/topics/modlist'>modlist</a>.</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Take data of guescini1 data set from the qpcR R package.</span>
 <span class='fu'>library</span>(<span class='no'>qpcR</span>)
 <span class='co'># Use the first column containing the cycles and the second column for sample F1.1.</span>
 <span class='fu'>data</span>(<span class='no'>guescini1</span>)
 <span class='fu'>qpcr_analyser</span>(<span class='no'>guescini1</span>, <span class='kw'>cyc</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fluo</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; Calculating delta of first/second derivative maxima...
-#&gt; .
-#&gt; </div><div class='output co'>#&gt;        Cy0      eff     fluo   deltaF
-#&gt; F1.1 12.68 1.929026 5.022708 43.76254
-#&gt; </div><div class='input'>
+#&gt; .</div><div class='output co'>#&gt;        Cy0      eff     fluo   deltaF
+#&gt; F1.1 12.68 1.929026 5.022708 43.76254</div><div class='input'>
 <span class='co'># Use similar setting as before but set takeoff to true for an estimation of</span>
 <span class='co'># the first significant cycle of the exponential region.</span>
 <span class='fu'>qpcr_analyser</span>(<span class='no'>guescini1</span>, <span class='kw'>cyc</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fluo</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>takeoff</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Calculating delta of first/second derivative maxima...
-#&gt; .
-#&gt; </div><div class='output co'>#&gt;        Cy0      eff     fluo top     f.top   deltaF
-#&gt; F1.1 12.68 1.929026 5.022708   8 0.1828568 43.76254
-#&gt; </div><div class='input'>
+#&gt; .</div><div class='output co'>#&gt;        Cy0      eff     fluo top     f.top   deltaF
+#&gt; F1.1 12.68 1.929026 5.022708   8 0.1828568 43.76254</div><div class='input'>
 <span class='co'># Use similar setting as before but use qpcr_analyser in a loop to calculate the results for the</span>
 <span class='co'># first four columns containing the fluorescence in guescini1</span>
 <span class='fu'>print</span>(<span class='fu'>qpcr_analyser</span>(<span class='no'>guescini1</span>, <span class='kw'>cyc</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fluo</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>5</span>, <span class='kw'>takeoff</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; Calculating delta of first/second derivative maxima...
@@ -189,8 +182,7 @@ data. <a href = 'http://CRAN.R-project.org/package=qpcR'>http://CRAN.R-project.o
 #&gt; F1.1 12.68 1.929026 5.022708   8 0.18285684 43.76254
 #&gt; F1.2 12.83 1.879277 5.414738   8 0.15452827 42.20724
 #&gt; F1.3 12.93 1.838269 5.968651   8 0.16241422 41.06854
-#&gt; F1.4 12.95 1.948830 5.885561   7 0.09467973 52.00836
-#&gt; </div><div class='input'>
+#&gt; F1.4 12.95 1.948830 5.885561   7 0.09467973 52.00836</div><div class='input'>
 <span class='co'># Run qpcr_analyser on the list of models (finer control on fitting model process)</span>
 <span class='no'>models</span> <span class='kw'>&lt;-</span> <span class='fu'>modlist</span>(<span class='no'>guescini1</span>)</div><div class='output co'>#&gt; Making model for F1.1 (l4)
 #&gt;  =&gt; Fitting passed...
@@ -446,8 +438,7 @@ data. <a href = 'http://CRAN.R-project.org/package=qpcR'>http://CRAN.R-project.o
 #&gt; 
 #&gt; Calculating delta of first/second derivative maxima...
 #&gt; .........10.........20.........30.........40.........50
-#&gt; .........60.........70.........80....
-#&gt; </div><div class='input'><span class='fu'>qpcr_analyser</span>(<span class='no'>models</span>)</div><div class='output co'>#&gt;         Cy0      eff     fluo
+#&gt; .........60.........70.........80....</div><div class='input'><span class='fu'>qpcr_analyser</span>(<span class='no'>models</span>)</div><div class='output co'>#&gt;         Cy0      eff     fluo
 #&gt;  [1,] 12.66 2.112965 4.478695
 #&gt;  [2,] 12.77 2.198693 4.418089
 #&gt;  [3,] 12.80 2.300741 4.400115
@@ -531,8 +522,7 @@ data. <a href = 'http://CRAN.R-project.org/package=qpcR'>http://CRAN.R-project.o
 #&gt; [81,] 34.31 1.965436 6.874830
 #&gt; [82,] 34.09 2.004853 6.832129
 #&gt; [83,] 34.11 1.971876 6.493096
-#&gt; [84,] 33.85 2.011292 6.503348
-#&gt; </div><div class='input'>
+#&gt; [84,] 33.85 2.011292 6.503348</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

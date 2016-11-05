@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate Density of Single dPCR Run — dpcr_density • dpcR</title>
+<title>Calculate Density of Single dPCR Run � dpcr_density • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -130,10 +130,7 @@ Expansions.</em> The Annals of Statistics 30, no. 1 (February 2002): 160--201.</
     <p>The browser-based graphical user interface for this function: <a href='dpcr_density_gui.html'>dpcr_density_gui</a>.</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Calculate the average number of molecules per partition and show the area</span>
 <span class='co'># of the confidence interval (left plot) and the area within the </span>
@@ -141,18 +138,15 @@ Expansions.</em> The Annals of Statistics 30, no. 1 (February 2002): 160--201.</
 <span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>2</span>))
 <span class='fu'>dpcr_density</span>(<span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>55</span>, <span class='kw'>average</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>methods</span> <span class='kw'>=</span> <span class='st'>"wilson"</span>,
              <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</div><div class='output co'>#&gt;   method  k  n    lambda    lower     upper
-#&gt; 1 wilson 25 55 0.6061358 0.400855 0.8789302
-#&gt; </div><div class='input'><span class='fu'>dpcr_density</span>(<span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>55</span>, <span class='kw'>average</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>methods</span> <span class='kw'>=</span> <span class='st'>"wilson"</span>,
+#&gt; 1 wilson 25 55 0.6061358 0.400855 0.8789302</div><div class='input'><span class='fu'>dpcr_density</span>(<span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>55</span>, <span class='kw'>average</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>methods</span> <span class='kw'>=</span> <span class='st'>"wilson"</span>,
              <span class='kw'>conf.level</span> <span class='kw'>=</span> -<span class='fl'>0.95</span>)</div><img src='dpcr_density-4.png' alt='' width='540' height='400' /><div class='output co'>#&gt;   method  k  n    lambda     lower    upper
-#&gt; 1 wilson 25 55 0.6061358 0.8789302 0.400855
-#&gt; </div><div class='input'><span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>1</span>))
+#&gt; 1 wilson 25 55 0.6061358 0.8789302 0.400855</div><div class='input'><span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>1</span>))
 
 <span class='co'># By setting average to FALSE the total number of positive molecules is </span>
 <span class='co'># calculated</span>
 <span class='fu'>dpcr_density</span>(<span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>55</span>, <span class='kw'>average</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>methods</span> <span class='kw'>=</span> <span class='st'>"wilson"</span>,
              <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</div><img src='dpcr_density-7.png' alt='' width='540' height='400' /><div class='output co'>#&gt;   method  k  n mean   lower    upper
-#&gt; 1 wilson 25 55   25 18.1639 32.16252
-#&gt; </div><div class='input'>
+#&gt; 1 wilson 25 55   25 18.1639 32.16252</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

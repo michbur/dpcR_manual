@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Methods for Function  — show-methods • dpcR</title>
+<title>Methods for Function  � show-methods • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -90,50 +90,47 @@ class <code><a href='adpcr-class.html'>adpcr</a></code> or <code><a href='dpcr-c
     </dl>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>#array dpcr</span>
 <span class='no'>ptest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_adpcr.html'>sim_adpcr</a></span>(<span class='fl'>400</span>, <span class='fl'>765</span>, <span class='fl'>5</span>, <span class='fl'>FALSE</span>, <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='fu'>show</span>(<span class='no'>ptest</span>)</div><div class='output co'>#&gt;      Experiment1.1
-#&gt; [1,]             1
+#&gt; [1,]             0
 #&gt; [2,]             0
 #&gt; [3,]             0
-#&gt; [4,]             2
+#&gt; [4,]             3
 #&gt; [5,]             0
 #&gt; 
 #&gt; 760 data points ommited.
 #&gt; Data type: &#39;nm&#39;</div><div class='input'>
 <span class='co'>#multiple experiments</span>
-<span class='no'>ptest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_adpcr.html'>sim_adpcr</a></span>(<span class='fl'>400</span>, <span class='fl'>765</span>, <span class='fl'>5</span>, <span class='fl'>FALSE</span>, <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output'><strong class='text-info'>The assumed volume of partitions in each run is equal to 1.</strong></div><div class='output'><strong class='text-info'>The assumed volume uncertainty in each run is equal to 0.</strong></div><div class='input'><span class='fu'>show</span>(<span class='no'>ptest</span>)</div><div class='output co'>#&gt;      Experiment1.1 Experiment1.2 Experiment1.3 Experiment1.4 Experiment1.5
-#&gt; [1,]             0             0             0             0             0
-#&gt; [2,]             1             1             1             0             0
+<span class='no'>ptest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_adpcr.html'>sim_adpcr</a></span>(<span class='fl'>400</span>, <span class='fl'>765</span>, <span class='fl'>5</span>, <span class='fl'>FALSE</span>, <span class='kw'>n_panels</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='message'>The assumed volume of partitions in each run is equal to 1.</span></div><div class='output co'>#&gt; <span class='message'>The assumed volume uncertainty in each run is equal to 0.</span></div><div class='input'><span class='fu'>show</span>(<span class='no'>ptest</span>)</div><div class='output co'>#&gt;      Experiment1.1 Experiment1.2 Experiment1.3 Experiment1.4 Experiment1.5
+#&gt; [1,]             1             0             0             0             0
+#&gt; [2,]             1             1             0             1             0
 #&gt; [3,]             1             0             0             0             1
-#&gt; [4,]             1             1             1             0             1
-#&gt; [5,]             1             1             1             1             0
+#&gt; [4,]             1             0             1             1             0
+#&gt; [5,]             1             0             2             0             1
 #&gt; 
 #&gt; 760 data points ommited.
 #&gt; Data type: &#39;nm&#39;</div><div class='input'>
 <span class='co'>#droplet dpcr - fluorescence</span>
 <span class='no'>dropletf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_dpcr.html'>sim_dpcr</a></span>(<span class='fl'>7</span>, <span class='fl'>20</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>fluo</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='fl'>0.1</span>, <span class='fl'>0</span>))
 <span class='fu'>show</span>(<span class='no'>dropletf</span>)</div><div class='output co'>#&gt;      Experiment1.1
-#&gt; [1,]    0.00000000
-#&gt; [2,]    0.09983342
-#&gt; [3,]    0.19866933
-#&gt; [4,]    0.29552021
-#&gt; [5,]    0.38941834
+#&gt; [1,]             0
+#&gt; [2,]             0
+#&gt; [3,]             0
+#&gt; [4,]             0
+#&gt; [5,]             0
 #&gt; 
 #&gt; 635 data points ommited.
 #&gt; Data type: &#39;fluo&#39;</div><div class='input'>
 <span class='co'>#droplet dpcr - number of molecules</span>
 <span class='no'>droplet</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_dpcr.html'>sim_dpcr</a></span>(<span class='fl'>7</span>, <span class='fl'>20</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 <span class='fu'>show</span>(<span class='no'>droplet</span>)</div><div class='output co'>#&gt;      Experiment1.1
-#&gt; [1,]             1
+#&gt; [1,]             0
 #&gt; [2,]             0
-#&gt; [3,]             0
-#&gt; [4,]             1
+#&gt; [3,]             1
+#&gt; [4,]             0
 #&gt; [5,]             0
 #&gt; 
 #&gt; 15 data points ommited.

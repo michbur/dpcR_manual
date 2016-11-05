@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Digitalized Data from a Fluidigm Array — White • dpcR</title>
+<title>Digitalized Data from a Fluidigm Array � White • dpcR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -130,10 +130,7 @@ BMC Genomics 2009;10:116. doi:10.1186/1471-2164-10-116.</p>
 http://www.optinav.com/imagej.html (accessed August 20, 2015).</p>
     
 
-    <h2 class="hasAnchor" id="examples">
-      <a class="anchor" href="#examples"></a>
-      Examples
-    </h2>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>str</span>(<span class='no'>White</span>)</div><div class='output co'>#&gt; &#39;data.frame&#39;:	9180 obs. of  10 variables:
 #&gt;  $ Image_position: num  11 11 11 11 11 11 11 11 11 11 ...
@@ -145,8 +142,7 @@ http://www.optinav.com/imagej.html (accessed August 20, 2015).</p>
 #&gt;  $ Area          : int  40 40 40 40 40 40 40 40 40 40 ...
 #&gt;  $ Min           : int  42 37 46 36 18 44 30 15 35 44 ...
 #&gt;  $ Max           : int  156 167 152 190 164 153 179 164 158 152 ...
-#&gt;  $ Mean          : num  112 114 115 122 117 ...
-#&gt; </div><div class='input'><span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3</span>,<span class='fl'>3</span>))
+#&gt;  $ Mean          : num  112 114 115 122 117 ...</div><div class='input'><span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3</span>,<span class='fl'>3</span>))
 
 
 <span class='no'>White_data</span> <span class='kw'>&lt;-</span> <span class='fu'>sapply</span>(<span class='fu'>unique</span>(<span class='no'>White</span><span class='kw'>[[</span><span class='st'>"Image_position"</span>]]), <span class='kw'>function</span>(<span class='no'>i</span>)
@@ -156,7 +152,7 @@ http://www.optinav.com/imagej.html (accessed August 20, 2015).</p>
          <span class='fu'>unique</span>(<span class='no'>White</span>[<span class='no'>White</span><span class='kw'>[[</span><span class='st'>"Image_position"</span>]] <span class='kw'>==</span> <span class='no'>i</span>, <span class='st'>"Sample"</span>]))
 
 <span class='no'>White_adpcr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_dpcr.html'>create_dpcr</a></span>(<span class='no'>White_data</span> <span class='kw'>&gt;</span> <span class='fl'>115</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>765</span>, <span class='kw'>assay</span> <span class='kw'>=</span> <span class='no'>assays</span>,
-                   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>, <span class='kw'>adpcr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output'><strong class='text-info'>The assumed number of partitions in each run is equal to 765.</strong></div><div class='output'><strong class='text-info'>The assumed volume of partitions in each run is equal to 1.</strong></div><div class='output'><strong class='text-info'>The assumed volume uncertainty in each run is equal to 0.</strong></div><div class='input'>
+                   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"np"</span>, <span class='kw'>adpcr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>The assumed number of partitions in each run is equal to 765.</span></div><div class='output co'>#&gt; <span class='message'>The assumed volume of partitions in each run is equal to 1.</span></div><div class='output co'>#&gt; <span class='message'>The assumed volume uncertainty in each run is equal to 0.</span></div><div class='input'>
 <span class='no'>White_k</span> <span class='kw'>&lt;-</span> <span class='fu'>colSums</span>(<span class='no'>White_data</span> <span class='kw'>&gt;</span> <span class='fl'>115</span>)
 
 <span class='fu'>sapply</span>(<span class='fl'>2</span>:<span class='fl'>4</span>, <span class='kw'>function</span>(<span class='no'>i</span>) {
@@ -179,8 +175,7 @@ http://www.optinav.com/imagej.html (accessed August 20, 2015).</p>
 #&gt; n      765      765      765     
 #&gt; mean   717      185      54      
 #&gt; lower  702.1094 162.8116 41.69404
-#&gt; upper  728.548  209.162  69.58861
-#&gt; </div><div class='input'>
+#&gt; upper  728.548  209.162  69.58861</div><div class='input'>
 <span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>1</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
